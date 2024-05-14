@@ -10,14 +10,19 @@ using System.Windows.Forms;
 
 namespace GenAISitecoreIntegration
 {
-    public partial class Form1 : Form
+    public partial class TranslationForm : Form
     {
-        public Form1()
+        public TranslationForm()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void TranslationForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void translateBtn_Click(object sender, EventArgs e)
         {
 
         }
