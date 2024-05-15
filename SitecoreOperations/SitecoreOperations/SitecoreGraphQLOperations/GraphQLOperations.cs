@@ -56,7 +56,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
         {
             try
             {
-                string graphqlendpoint = System.Configuration.ConfigurationManager.AppSettings.Get("graphqlEdgePreviewUrl");
+                string graphqlendpoint = System.Configuration.ConfigurationManager.AppSettings.Get("previewGraphQLUrl");
                 string apikey = System.Configuration.ConfigurationManager.AppSettings.Get("scApikey");
 
 
@@ -66,7 +66,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
                     HttpMethod.Post,
                     "",
                     apikey,
-                    "query { item(path: \"" + itemPath + "\", language: \"en\") {id, name, fields: {   nodes     { Title, Content } }}}",
+                    "query { item(path: \"" + itemPath + "\", language: \"en\") {id, name }}",
                     new
                     {
                     },
