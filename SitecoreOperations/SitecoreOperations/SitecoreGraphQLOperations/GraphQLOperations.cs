@@ -66,7 +66,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
                     HttpMethod.Post,
                     "",
                     apikey,
-                    "query { item(path: \"" + itemPath + "\", language: \"en\") {id, name }}",
+                    "query { item(path: \"" + itemPath + "\", language: \"en\") {fields(ownFields: true){name,value}}}",
                     new
                     {
                     },

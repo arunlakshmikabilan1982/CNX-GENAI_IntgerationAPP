@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 namespace SitecoreOperations.Models
 {
-    public class Item
+    public class Items
     {
         public string id { get; set; }
         public string name { get; set; }
+        public item[] fields { get; set; }
+    }
+
+    public class item
+    {
+        public string name { get; set; }
+        public string value { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace SitecoreOperations.Models
 {
     public class DataItem
     {
-        public Item item { get; set; }
+        public Items item { get; set; }
     }
 
 }
