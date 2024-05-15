@@ -12,7 +12,7 @@ namespace SitecoreOperations
         static async Task Main(string[] args)
         {
             var GraphQLClass = new GraphQLOperations();
-            await GraphQLClass.GetItemFields();
+            //await GraphQLClass.GetItemFields();
 
         }
     }

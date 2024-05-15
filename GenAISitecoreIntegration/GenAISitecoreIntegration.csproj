@@ -38,18 +38,6 @@
     <Reference Include="Azure.Core, Version=1.38.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
       <HintPath>..\packages\Azure.Core.1.38.0\lib\net472\Azure.Core.dll</HintPath>
     </Reference>
-    <Reference Include="GraphQL.Client, Version=6.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GraphQL.Client.6.0.5\lib\net461\GraphQL.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="GraphQL.Client.Abstractions, Version=6.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GraphQL.Client.Abstractions.6.0.5\lib\netstandard2.0\GraphQL.Client.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="GraphQL.Client.Abstractions.Websocket, Version=6.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GraphQL.Client.Abstractions.Websocket.6.0.5\lib\netstandard2.0\GraphQL.Client.Abstractions.Websocket.dll</HintPath>
-    </Reference>
-    <Reference Include="GraphQL.Primitives, Version=6.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GraphQL.Primitives.6.0.5\lib\netstandard2.0\GraphQL.Primitives.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -204,6 +192,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SitecoreOperations\SitecoreOperations\SitecoreOperations.csproj">
+      <Project>{4f8b7835-c93e-4494-8c4d-84a9affd3bc3}</Project>
+      <Name>SitecoreOperations</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />
