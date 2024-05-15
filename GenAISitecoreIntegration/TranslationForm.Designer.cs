@@ -37,7 +37,6 @@ namespace GenAISitecoreIntegration
             this.fieldListDropdown = new System.Windows.Forms.ComboBox();
             this.fieldListLabel = new System.Windows.Forms.Label();
             this.itemPathDropdown = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.resultLabel = new System.Windows.Forms.Label();
             this.resultTextBox = new System.Windows.Forms.RichTextBox();
@@ -126,13 +125,6 @@ namespace GenAISitecoreIntegration
             this.itemPathDropdown.Size = new System.Drawing.Size(222, 28);
             this.itemPathDropdown.TabIndex = 3;
             // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 23);
-            this.label2.TabIndex = 4;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.resultLabel);
@@ -177,7 +169,6 @@ namespace GenAISitecoreIntegration
             this.ClientSize = new System.Drawing.Size(1269, 673);
             this.Controls.Add(this.headerLabel);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Name = "TranslationForm";
             this.Text = "Translation Form";
@@ -195,7 +186,6 @@ namespace GenAISitecoreIntegration
 
         private System.Windows.Forms.Label itemPathLabel;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button translateBtn;
         private System.Windows.Forms.ComboBox languageDropdown;
         private System.Windows.Forms.Label languageLabel;

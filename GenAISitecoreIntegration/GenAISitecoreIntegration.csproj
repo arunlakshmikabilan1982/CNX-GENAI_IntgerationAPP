@@ -162,6 +162,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TextGenerationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextGenerationForm.Designer.cs">
+      <DependentUpon>TextGenerationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TranslationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="TextGenerationForm.resx">
+      <DependentUpon>TextGenerationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TranslationForm.resx">
       <DependentUpon>TranslationForm.cs</DependentUpon>
     </EmbeddedResource>
