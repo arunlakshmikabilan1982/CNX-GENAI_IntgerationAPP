@@ -44,8 +44,12 @@ namespace GenAISitecoreIntegration
             this.resultLabel = new System.Windows.Forms.Label();
             this.resultTextBox = new System.Windows.Forms.RichTextBox();
             this.headerLabel = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.translationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textGenerationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // itemPathLabel
@@ -98,7 +102,7 @@ namespace GenAISitecoreIntegration
             this.getItemFieldsBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.getItemFieldsBtn.Location = new System.Drawing.Point(79, 121);
             this.getItemFieldsBtn.Name = "getItemFieldsBtn";
-            this.getItemFieldsBtn.Size = new System.Drawing.Size(188, 34);
+            this.getItemFieldsBtn.Size = new System.Drawing.Size(188, 45);
             this.getItemFieldsBtn.TabIndex = 7;
             this.getItemFieldsBtn.Text = "Get Item Fields";
             this.getItemFieldsBtn.UseVisualStyleBackColor = false;
@@ -115,7 +119,7 @@ namespace GenAISitecoreIntegration
             // 
             this.translateBtn.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.translateBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.translateBtn.Location = new System.Drawing.Point(744, 116);
+            this.translateBtn.Location = new System.Drawing.Point(744, 121);
             this.translateBtn.Name = "translateBtn";
             this.translateBtn.Size = new System.Drawing.Size(172, 45);
             this.translateBtn.TabIndex = 6;
@@ -126,7 +130,7 @@ namespace GenAISitecoreIntegration
             // languageDropdown
             // 
             this.languageDropdown.FormattingEnabled = true;
-            this.languageDropdown.Location = new System.Drawing.Point(429, 205);
+            this.languageDropdown.Location = new System.Drawing.Point(429, 227);
             this.languageDropdown.Name = "languageDropdown";
             this.languageDropdown.Size = new System.Drawing.Size(259, 28);
             this.languageDropdown.TabIndex = 3;
@@ -135,7 +139,7 @@ namespace GenAISitecoreIntegration
             // 
             this.languageLabel.AutoSize = true;
             this.languageLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.languageLabel.Location = new System.Drawing.Point(425, 169);
+            this.languageLabel.Location = new System.Drawing.Point(425, 185);
             this.languageLabel.Name = "languageLabel";
             this.languageLabel.Size = new System.Drawing.Size(93, 23);
             this.languageLabel.TabIndex = 4;
@@ -144,7 +148,7 @@ namespace GenAISitecoreIntegration
             // fieldListDropdown
             // 
             this.fieldListDropdown.FormattingEnabled = true;
-            this.fieldListDropdown.Location = new System.Drawing.Point(45, 205);
+            this.fieldListDropdown.Location = new System.Drawing.Point(45, 227);
             this.fieldListDropdown.Name = "fieldListDropdown";
             this.fieldListDropdown.Size = new System.Drawing.Size(259, 28);
             this.fieldListDropdown.TabIndex = 3;
@@ -153,7 +157,7 @@ namespace GenAISitecoreIntegration
             // 
             this.fieldListLabel.AutoSize = true;
             this.fieldListLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fieldListLabel.Location = new System.Drawing.Point(41, 169);
+            this.fieldListLabel.Location = new System.Drawing.Point(41, 185);
             this.fieldListLabel.Name = "fieldListLabel";
             this.fieldListLabel.Size = new System.Drawing.Size(89, 23);
             this.fieldListLabel.TabIndex = 2;
@@ -190,11 +194,39 @@ namespace GenAISitecoreIntegration
             // 
             this.headerLabel.AutoSize = true;
             this.headerLabel.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.headerLabel.Location = new System.Drawing.Point(538, 29);
+            this.headerLabel.Location = new System.Drawing.Point(528, 51);
             this.headerLabel.Name = "headerLabel";
             this.headerLabel.Size = new System.Drawing.Size(153, 32);
             this.headerLabel.TabIndex = 5;
             this.headerLabel.Text = "Translation";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.translationToolStripMenuItem,
+            this.textGenerationToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1269, 36);
+            this.menuStrip1.TabIndex = 6;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // translationToolStripMenuItem
+            // 
+            this.translationToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.translationToolStripMenuItem.Name = "translationToolStripMenuItem";
+            this.translationToolStripMenuItem.Size = new System.Drawing.Size(137, 32);
+            this.translationToolStripMenuItem.Text = "Translation";
+            this.translationToolStripMenuItem.Click += new System.EventHandler(this.translationToolStripMenuItem_Click);
+            // 
+            // textGenerationToolStripMenuItem
+            // 
+            this.textGenerationToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textGenerationToolStripMenuItem.Name = "textGenerationToolStripMenuItem";
+            this.textGenerationToolStripMenuItem.Size = new System.Drawing.Size(179, 32);
+            this.textGenerationToolStripMenuItem.Text = "Text Generation";
+            this.textGenerationToolStripMenuItem.Click += new System.EventHandler(this.textGenerationToolStripMenuItem_Click);
             // 
             // TranslationForm
             // 
@@ -204,6 +236,8 @@ namespace GenAISitecoreIntegration
             this.Controls.Add(this.headerLabel);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "TranslationForm";
             this.Text = "Translation Form";
             this.Load += new System.EventHandler(this.TranslationForm_Load);
@@ -211,6 +245,8 @@ namespace GenAISitecoreIntegration
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,6 +269,9 @@ namespace GenAISitecoreIntegration
         private System.Windows.Forms.TextBox queryTextbox;
         private System.Windows.Forms.ComboBox fieldListDropdown;
         private System.Windows.Forms.Label fieldListLabel;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem translationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem textGenerationToolStripMenuItem;
     }
 }
 

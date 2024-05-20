@@ -39,7 +39,7 @@ namespace SitecoreOperations
                 {
                     httpRequestMessage.Headers.Add("sc_apikey", apiKey);
                 }
-                using (var response = await _httpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
+                using (var response = await _httpClient.SendAsync(httpRequestMessage).ConfigureAwait(false))
                 {
                     //if (response.IsSuccessStatusCode)
                     if (response?.Content.Headers.ContentType?.MediaType == "application/json")
