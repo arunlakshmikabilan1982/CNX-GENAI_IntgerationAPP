@@ -53,7 +53,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
         }
 
         // public async Task CreateArticleItem(String ParentItem, String ItemName, String Query, String Template)
-        public async Task CreateArticleItem(string ParentItem, string ItemName, string Query, string Template)
+        public async Task<GraphQLResponse<object>> CreateArticleItem(string ParentItem, string ItemName, string Query, string Template)
         {
             var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
             {
@@ -125,11 +125,12 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             };
             var graphQLResponse = await graphQLClient.SendMutationAsync<object>(request);
             Console.WriteLine(graphQLResponse.Data);
+            return graphQLResponse;
         }
 
 
         // public async Task CreateBlogItem(String ParentItem, String ItemName, String Query, String Template)
-        public async Task CreateBlogItem()
+        public async Task<GraphQLResponse<object>> CreateBlogItem()
         {
             var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
             {
@@ -179,6 +180,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             };
             var graphQLResponse = await graphQLClient.SendMutationAsync<object>(request);
             Console.WriteLine(graphQLResponse.Data);
+            return graphQLResponse;
         }
 
         public async Task GetSitecoreItem(string itemPath)
