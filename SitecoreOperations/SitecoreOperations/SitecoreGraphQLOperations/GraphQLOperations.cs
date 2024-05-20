@@ -181,7 +181,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             Console.WriteLine(graphQLResponse.Data);
         }
 
-        public async Task GetSitecoreItem()
+        public async Task GetSitecoreItem(string itemPath)
         {
             try
             {
@@ -195,7 +195,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
                     HttpMethod.Post,
                     "",
                     apikey,
-                    "query { item(path: \"7B486E43327544619799F2A897CC404B\", language: \"en\") {fields(ownFields: true){name,value}}}",
+                    "query { item(path: \"" + itemPath + "\", language: \"en\") {fields(ownFields: true){name,value}}}",
                     new
                     {
                     });
