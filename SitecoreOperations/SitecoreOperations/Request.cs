@@ -20,7 +20,7 @@ namespace SitecoreOperations
             /// <summary>
             /// Calls a specified GraphQL endpoint with the specified query and variables.
             /// </summary>
-            internal static async Task<GraphQLResponse<TResponse>> CallGraphQLAsync<TResponse>(Uri endpoint, HttpMethod method, string accessToken, string apiKey, string query, object variables, CancellationToken cancellationToken)
+            internal static async Task<GraphQLResponse<TResponse>> CallGraphQLAsync<TResponse>(Uri endpoint, HttpMethod method, string accessToken, string apiKey, string query, object variables)
             {
                 var content = new StringContent(SerializeGraphQLCall(query, variables), Encoding.UTF8, "application/json");
                 var httpRequestMessage = new HttpRequestMessage

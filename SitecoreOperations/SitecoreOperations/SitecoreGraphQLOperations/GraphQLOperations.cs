@@ -129,7 +129,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
 
 
         // public async Task CreateBlogItem(String ParentItem, String ItemName, String Query, String Template)
-        public async Task CreateBlogItem()
+        public async Task CreateBlogItem(String ParentItem, String ItemName, String Query, String Template)
         {
             var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
             {
