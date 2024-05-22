@@ -183,7 +183,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             return graphQLResponse;
         }
 
-        public async Task GetSitecoreItem(string itemPath)
+        public async Task<Items> GetSitecoreItem(string itemPath)
         {
             try
             {
@@ -197,7 +197,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
                     HttpMethod.Post,
                     "",
                     apikey,
-                    "query { item(path: \"" + itemPath + "\", language: \"en\") {fields(ownFields: true){name,value}}}",
+                    "query { item(path: \"" + itemPath + "\", language: \"en\") {id,name,fields(ownFields: true){name,value,id}}}",
                     new
                     {
                     });
@@ -205,21 +205,16 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
                 if (result.Errors?.Count > 0)
                 {
                     Console.WriteLine($"GraphQL returned errors:\n{string.Join("\n", result.Errors.Select(x => $"  - {x.Message}"))}");
-                    return;
-                }
-
-                // Use the response data
-                if (result.Data.item == null)
-                {
-                    Console.WriteLine($"item not found ,");
+                    return null;
                 }
                 else
                 {
-                    Console.WriteLine($"Found item {result.Data.item?.id} ,");
+                    return result.Data.item;
                 }
             }
             catch (Exception e)
             {
+                throw e;
 
             }
 

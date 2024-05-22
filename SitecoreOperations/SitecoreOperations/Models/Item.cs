@@ -15,6 +15,7 @@ namespace SitecoreOperations.Models
 
     public class item
     {
+        public string Id { get; set; }
         public string name { get; set; }
         public string value { get; set; }
     }
