@@ -41,20 +41,6 @@ namespace GenAISitecoreIntegration
             }
         }
 
-        private void translationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            TranslationForm f1 = new TranslationForm();
-            f1.ShowDialog();
-        }
-
-        private void textGenerationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            TextGenerationForm f1 = new TextGenerationForm();
-            f1.ShowDialog();
-        }
-
         private void templateTypeDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
             var itemType = Enum.Parse(typeof(ItemType), itemTypeDropdown.SelectedItem.ToString());
@@ -97,6 +83,44 @@ namespace GenAISitecoreIntegration
                         break;
                 }
             }
+        }
+
+        private void itemTypeDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textGenerationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            TextGenerationForm f1 = new TextGenerationForm();
+            f1.ShowDialog();
+        }
+
+        private void translationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            TranslationForm f1 = new TranslationForm();
+            f1.ShowDialog();
+        }
+
+        private void contentAnalysisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ContentAnalysisForm f1 = new ContentAnalysisForm();
+            f1.ShowDialog();
+        }
+
+        private void imageAnalysisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ImageAnalysisForm f1 = new ImageAnalysisForm();
+            f1.ShowDialog();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 

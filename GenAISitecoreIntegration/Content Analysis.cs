@@ -1,35 +1,24 @@
 ﻿using SitecoreOperations.Models;
 using SitecoreOperations.SitecoreGraphQLOperations;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace GenAISitecoreIntegration
 {
-    public partial class TranslationForm : Form
+    public partial class ContentAnalysisForm : Form
     {
         private GraphQLOperations qLOperations;
         private Items itemFields;
 
-        public TranslationForm()
+        public ContentAnalysisForm()
         {
             InitializeComponent();
         }
 
-        private void TranslationForm_Load(object sender, EventArgs e)
+        private void ContentAnalysisForm_Load(object sender, EventArgs e)
         {
             qLOperations = new GraphQLOperations();
             languageDropdown.DataSource = Enum.GetValues(typeof(Language));
-        }
-
-        private void translateBtn_Click(object sender, EventArgs e)
-        {
-            var path = itemPathTextbox.Text;
-            var field = fieldListDropdown.SelectedItem.ToString();
-            var language = languageDropdown.SelectedItem.ToString();
-            var query = queryTextbox.Text;
-            //qLOperations.Translate(path, query, field, language);
-            //resultTextBox.Text = Helper.Translate(path, fieldId, language);
         }
 
         private async void getItemFieldsBtn_Click(object sender, EventArgs e)
@@ -39,16 +28,16 @@ namespace GenAISitecoreIntegration
             if(itemFields!=null && itemFields.fields?.Length>0)
             {
                 fieldListDropdown.DisplayMember = "name";
-                fieldListDropdown.ValueMember = "Id";
+                fieldListDropdown.ValueMember = "name";
                 fieldListDropdown.DataSource = itemFields.fields;
+
             }
             resultTextBox.Text = "No Fields Found";
         }
-
+        
         private void fieldListDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedField = itemFields.fields.ToList().FirstOrDefault(x => x.Id.Equals(fieldListDropdown.SelectedValue.ToString()));
-            resultTextBox.Text = string.Format("Item: {0}\nSelected Field Are Below:\nField Name: {1]\nField Value: {2}", itemFields.name, selectedField.name, selectedField.value);
+
         }
 
         private void textGenerationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -83,13 +72,13 @@ namespace GenAISitecoreIntegration
         {
             Application.Exit();
         }
-    }
 
-    public enum Language
-    {
-        English,
-        Spanish,
-        Chinese,
-        Japanese
+        private void getContentBtn_Click(object sender, EventArgs e)
+        {
+            var query = queryTextbox.Text;
+            var language = languageDropdown.SelectedIndex.ToString();
+            var field = fieldListDropdown.SelectedIndex.ToString();
+            _ = qLOperations.AskGenAIBot(itemFields.id, field, query, language);
+        }
     }
 }

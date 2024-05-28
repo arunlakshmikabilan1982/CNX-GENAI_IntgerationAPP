@@ -1,22 +1,21 @@
 ﻿using SitecoreOperations.Models;
 using SitecoreOperations.SitecoreGraphQLOperations;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace GenAISitecoreIntegration
 {
-    public partial class TranslationForm : Form
+    public partial class ImageAnalysisForm : Form
     {
         private GraphQLOperations qLOperations;
         private Items itemFields;
 
-        public TranslationForm()
+        public ImageAnalysisForm()
         {
             InitializeComponent();
         }
 
-        private void TranslationForm_Load(object sender, EventArgs e)
+        private void ImageAnalysisForm_Load(object sender, EventArgs e)
         {
             qLOperations = new GraphQLOperations();
             languageDropdown.DataSource = Enum.GetValues(typeof(Language));
@@ -41,14 +40,14 @@ namespace GenAISitecoreIntegration
                 fieldListDropdown.DisplayMember = "name";
                 fieldListDropdown.ValueMember = "Id";
                 fieldListDropdown.DataSource = itemFields.fields;
+
             }
             resultTextBox.Text = "No Fields Found";
         }
 
         private void fieldListDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedField = itemFields.fields.ToList().FirstOrDefault(x => x.Id.Equals(fieldListDropdown.SelectedValue.ToString()));
-            resultTextBox.Text = string.Format("Item: {0}\nSelected Field Are Below:\nField Name: {1]\nField Value: {2}", itemFields.name, selectedField.name, selectedField.value);
+
         }
 
         private void textGenerationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -83,13 +82,5 @@ namespace GenAISitecoreIntegration
         {
             Application.Exit();
         }
-    }
-
-    public enum Language
-    {
-        English,
-        Spanish,
-        Chinese,
-        Japanese
     }
 }

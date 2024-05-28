@@ -47,8 +47,12 @@ namespace GenAISitecoreIntegration
             this.resultTextBox = new System.Windows.Forms.RichTextBox();
             this.noteTextBox = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.translationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textGenerationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.translationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contentAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -89,21 +93,21 @@ namespace GenAISitecoreIntegration
             this.panel1.Controls.Add(this.pathLabel);
             this.panel1.Location = new System.Drawing.Point(64, 130);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(867, 238);
+            this.panel1.Size = new System.Drawing.Size(1013, 238);
             this.panel1.TabIndex = 6;
             // 
             // itemNameTextbox
             // 
-            this.itemNameTextbox.Location = new System.Drawing.Point(625, 71);
+            this.itemNameTextbox.Location = new System.Drawing.Point(694, 71);
             this.itemNameTextbox.Name = "itemNameTextbox";
-            this.itemNameTextbox.Size = new System.Drawing.Size(213, 26);
+            this.itemNameTextbox.Size = new System.Drawing.Size(280, 26);
             this.itemNameTextbox.TabIndex = 3;
             // 
             // itemNameLabel
             // 
             this.itemNameLabel.AutoSize = true;
             this.itemNameLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.itemNameLabel.Location = new System.Drawing.Point(621, 26);
+            this.itemNameLabel.Location = new System.Drawing.Point(690, 26);
             this.itemNameLabel.Name = "itemNameLabel";
             this.itemNameLabel.Size = new System.Drawing.Size(103, 23);
             this.itemNameLabel.TabIndex = 3;
@@ -111,16 +115,16 @@ namespace GenAISitecoreIntegration
             // 
             // queryTextbox
             // 
-            this.queryTextbox.Location = new System.Drawing.Point(336, 71);
+            this.queryTextbox.Location = new System.Drawing.Point(376, 71);
             this.queryTextbox.Name = "queryTextbox";
-            this.queryTextbox.Size = new System.Drawing.Size(232, 26);
+            this.queryTextbox.Size = new System.Drawing.Size(280, 26);
             this.queryTextbox.TabIndex = 3;
             // 
             // queryLabel
             // 
             this.queryLabel.AutoSize = true;
             this.queryLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.queryLabel.Location = new System.Drawing.Point(332, 26);
+            this.queryLabel.Location = new System.Drawing.Point(372, 26);
             this.queryLabel.Name = "queryLabel";
             this.queryLabel.Size = new System.Drawing.Size(64, 23);
             this.queryLabel.TabIndex = 7;
@@ -130,16 +134,16 @@ namespace GenAISitecoreIntegration
             // 
             this.pathTextbox.Location = new System.Drawing.Point(34, 71);
             this.pathTextbox.Name = "pathTextbox";
-            this.pathTextbox.Size = new System.Drawing.Size(242, 26);
+            this.pathTextbox.Size = new System.Drawing.Size(280, 26);
             this.pathTextbox.TabIndex = 3;
             // 
             // createItemBtn
             // 
-            this.createItemBtn.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.createItemBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.createItemBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createItemBtn.Location = new System.Drawing.Point(655, 153);
+            this.createItemBtn.Location = new System.Drawing.Point(740, 153);
             this.createItemBtn.Name = "createItemBtn";
-            this.createItemBtn.Size = new System.Drawing.Size(143, 45);
+            this.createItemBtn.Size = new System.Drawing.Size(193, 45);
             this.createItemBtn.TabIndex = 6;
             this.createItemBtn.Text = "Create Item";
             this.createItemBtn.UseVisualStyleBackColor = false;
@@ -148,9 +152,9 @@ namespace GenAISitecoreIntegration
             // templateTypeDropdown
             // 
             this.templateTypeDropdown.FormattingEnabled = true;
-            this.templateTypeDropdown.Location = new System.Drawing.Point(336, 170);
+            this.templateTypeDropdown.Location = new System.Drawing.Point(376, 170);
             this.templateTypeDropdown.Name = "templateTypeDropdown";
-            this.templateTypeDropdown.Size = new System.Drawing.Size(232, 28);
+            this.templateTypeDropdown.Size = new System.Drawing.Size(280, 28);
             this.templateTypeDropdown.TabIndex = 3;
             this.templateTypeDropdown.SelectedIndexChanged += new System.EventHandler(this.templateTypeDropdown_SelectedIndexChanged);
             // 
@@ -158,7 +162,7 @@ namespace GenAISitecoreIntegration
             // 
             this.templateTypeLabel.AutoSize = true;
             this.templateTypeLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.templateTypeLabel.Location = new System.Drawing.Point(332, 126);
+            this.templateTypeLabel.Location = new System.Drawing.Point(372, 126);
             this.templateTypeLabel.Name = "templateTypeLabel";
             this.templateTypeLabel.Size = new System.Drawing.Size(135, 23);
             this.templateTypeLabel.TabIndex = 4;
@@ -169,8 +173,9 @@ namespace GenAISitecoreIntegration
             this.itemTypeDropdown.FormattingEnabled = true;
             this.itemTypeDropdown.Location = new System.Drawing.Point(34, 170);
             this.itemTypeDropdown.Name = "itemTypeDropdown";
-            this.itemTypeDropdown.Size = new System.Drawing.Size(242, 28);
+            this.itemTypeDropdown.Size = new System.Drawing.Size(280, 28);
             this.itemTypeDropdown.TabIndex = 3;
+            this.itemTypeDropdown.SelectedIndexChanged += new System.EventHandler(this.itemTypeDropdown_SelectedIndexChanged);
             // 
             // itemTypeLabel
             // 
@@ -188,7 +193,7 @@ namespace GenAISitecoreIntegration
             this.panel2.Controls.Add(this.resultTextBox);
             this.panel2.Location = new System.Drawing.Point(98, 399);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(804, 172);
+            this.panel2.Size = new System.Drawing.Size(940, 172);
             this.panel2.TabIndex = 7;
             // 
             // resultLabel
@@ -205,60 +210,96 @@ namespace GenAISitecoreIntegration
             // 
             this.resultTextBox.Location = new System.Drawing.Point(34, 60);
             this.resultTextBox.Name = "resultTextBox";
-            this.resultTextBox.Size = new System.Drawing.Size(730, 82);
+            this.resultTextBox.ReadOnly = true;
+            this.resultTextBox.Size = new System.Drawing.Size(865, 82);
             this.resultTextBox.TabIndex = 0;
             this.resultTextBox.Text = "";
             // 
             // noteTextBox
             // 
             this.noteTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noteTextBox.Location = new System.Drawing.Point(957, 130);
+            this.noteTextBox.Location = new System.Drawing.Point(1083, 130);
             this.noteTextBox.Name = "noteTextBox";
+            this.noteTextBox.ReadOnly = true;
             this.noteTextBox.Size = new System.Drawing.Size(328, 238);
             this.noteTextBox.TabIndex = 9;
             this.noteTextBox.Text = "";
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.translationToolStripMenuItem,
-            this.textGenerationToolStripMenuItem});
+            this.homeToolStripMenuItem,
+            this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1316, 38);
-            this.menuStrip1.TabIndex = 11;
+            this.menuStrip1.Size = new System.Drawing.Size(1478, 36);
+            this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // translationToolStripMenuItem
+            // homeToolStripMenuItem
             // 
-            this.translationToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.translationToolStripMenuItem.Name = "translationToolStripMenuItem";
-            this.translationToolStripMenuItem.Size = new System.Drawing.Size(137, 32);
-            this.translationToolStripMenuItem.Text = "Translation";
-            this.translationToolStripMenuItem.Click += new System.EventHandler(this.translationToolStripMenuItem_Click);
+            this.homeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.textGenerationToolStripMenuItem,
+            this.translationToolStripMenuItem,
+            this.contentAnalysisToolStripMenuItem,
+            this.imageAnalysisToolStripMenuItem});
+            this.homeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(83, 32);
+            this.homeToolStripMenuItem.Text = "Home";
             // 
             // textGenerationToolStripMenuItem
             // 
-            this.textGenerationToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textGenerationToolStripMenuItem.Name = "textGenerationToolStripMenuItem";
-            this.textGenerationToolStripMenuItem.Size = new System.Drawing.Size(179, 32);
+            this.textGenerationToolStripMenuItem.Size = new System.Drawing.Size(274, 36);
             this.textGenerationToolStripMenuItem.Text = "Text Generation";
             this.textGenerationToolStripMenuItem.Click += new System.EventHandler(this.textGenerationToolStripMenuItem_Click);
+            // 
+            // translationToolStripMenuItem
+            // 
+            this.translationToolStripMenuItem.Name = "translationToolStripMenuItem";
+            this.translationToolStripMenuItem.Size = new System.Drawing.Size(274, 36);
+            this.translationToolStripMenuItem.Text = "Translation";
+            this.translationToolStripMenuItem.Click += new System.EventHandler(this.translationToolStripMenuItem_Click);
+            // 
+            // contentAnalysisToolStripMenuItem
+            // 
+            this.contentAnalysisToolStripMenuItem.Name = "contentAnalysisToolStripMenuItem";
+            this.contentAnalysisToolStripMenuItem.Size = new System.Drawing.Size(274, 36);
+            this.contentAnalysisToolStripMenuItem.Text = "Content Analysis";
+            this.contentAnalysisToolStripMenuItem.Click += new System.EventHandler(this.contentAnalysisToolStripMenuItem_Click);
+            // 
+            // imageAnalysisToolStripMenuItem
+            // 
+            this.imageAnalysisToolStripMenuItem.Name = "imageAnalysisToolStripMenuItem";
+            this.imageAnalysisToolStripMenuItem.Size = new System.Drawing.Size(274, 36);
+            this.imageAnalysisToolStripMenuItem.Text = "Image Analysis";
+            this.imageAnalysisToolStripMenuItem.Click += new System.EventHandler(this.imageAnalysisToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(64, 32);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // TextGenerationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1316, 583);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(1478, 694);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.noteTextBox);
             this.Controls.Add(this.headerLabel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Name = "TextGenerationForm";
-            this.Text = "TextGenerationForm";
+            this.Text = "Text Generation";
             this.Load += new System.EventHandler(this.TextGenerationForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -291,7 +332,11 @@ namespace GenAISitecoreIntegration
         private System.Windows.Forms.TextBox itemNameTextbox;
         private System.Windows.Forms.Label itemNameLabel;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem translationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem textGenerationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem translationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem contentAnalysisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem imageAnalysisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
