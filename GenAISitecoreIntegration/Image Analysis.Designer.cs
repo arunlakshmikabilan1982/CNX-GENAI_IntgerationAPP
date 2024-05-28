@@ -1,7 +1,7 @@
 ﻿
 namespace GenAISitecoreIntegration
 {
-    partial class TranslationForm
+    partial class ImageAnalysisForm
     {
         /// <summary>
         /// Required designer variable.
@@ -78,7 +78,7 @@ namespace GenAISitecoreIntegration
             this.panel1.Controls.Add(this.fieldListDropdown);
             this.panel1.Controls.Add(this.fieldListLabel);
             this.panel1.Controls.Add(this.itemPathLabel);
-            this.panel1.Location = new System.Drawing.Point(151, 101);
+            this.panel1.Location = new System.Drawing.Point(121, 101);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(967, 281);
             this.panel1.TabIndex = 1;
@@ -172,7 +172,7 @@ namespace GenAISitecoreIntegration
             // 
             this.panel2.Controls.Add(this.resultLabel);
             this.panel2.Controls.Add(this.resultTextBox);
-            this.panel2.Location = new System.Drawing.Point(199, 418);
+            this.panel2.Location = new System.Drawing.Point(169, 418);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(871, 230);
             this.panel2.TabIndex = 3;
@@ -200,11 +200,11 @@ namespace GenAISitecoreIntegration
             // 
             this.headerLabel.AutoSize = true;
             this.headerLabel.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.headerLabel.Location = new System.Drawing.Point(558, 51);
+            this.headerLabel.Location = new System.Drawing.Point(528, 51);
             this.headerLabel.Name = "headerLabel";
-            this.headerLabel.Size = new System.Drawing.Size(153, 32);
+            this.headerLabel.Size = new System.Drawing.Size(194, 32);
             this.headerLabel.TabIndex = 5;
-            this.headerLabel.Text = "Translation";
+            this.headerLabel.Text = "Image Analysis";
             // 
             // menuStrip1
             // 
@@ -268,7 +268,7 @@ namespace GenAISitecoreIntegration
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // TranslationForm
+            // ImageAnalysisForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -278,9 +278,9 @@ namespace GenAISitecoreIntegration
             this.Controls.Add(this.headerLabel);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "TranslationForm";
-            this.Text = "Translation";
-            this.Load += new System.EventHandler(this.TranslationForm_Load);
+            this.Name = "ImageAnalysisForm";
+            this.Text = "Image Analysis";
+            this.Load += new System.EventHandler(this.ImageAnalysisForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

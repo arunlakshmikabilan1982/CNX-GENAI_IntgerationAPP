@@ -153,11 +153,29 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeForm.Designer.cs">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TextGenerationForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TextGenerationForm.Designer.cs">
       <DependentUpon>TextGenerationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Image Analysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Image Analysis.Designer.cs">
+      <DependentUpon>Image Analysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Content Analysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Content Analysis.Designer.cs">
+      <DependentUpon>Content Analysis.cs</DependentUpon>
     </Compile>
     <Compile Include="TranslationForm.cs">
       <SubType>Form</SubType>
@@ -167,8 +185,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="HomeForm.resx">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TextGenerationForm.resx">
       <DependentUpon>TextGenerationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image Analysis.resx">
+      <DependentUpon>Image Analysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content Analysis.resx">
+      <DependentUpon>Content Analysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TranslationForm.resx">
       <DependentUpon>TranslationForm.cs</DependentUpon>

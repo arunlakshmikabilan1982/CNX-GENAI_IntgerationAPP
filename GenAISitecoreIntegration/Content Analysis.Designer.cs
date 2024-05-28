@@ -1,7 +1,7 @@
 ﻿
 namespace GenAISitecoreIntegration
 {
-    partial class TranslationForm
+    partial class ContentAnalysisForm
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,7 @@ namespace GenAISitecoreIntegration
             this.queryLabel = new System.Windows.Forms.Label();
             this.getItemFieldsBtn = new System.Windows.Forms.Button();
             this.itemPathTextbox = new System.Windows.Forms.TextBox();
-            this.translateBtn = new System.Windows.Forms.Button();
+            this.getContentBtn = new System.Windows.Forms.Button();
             this.languageDropdown = new System.Windows.Forms.ComboBox();
             this.languageLabel = new System.Windows.Forms.Label();
             this.fieldListDropdown = new System.Windows.Forms.ComboBox();
@@ -72,13 +72,13 @@ namespace GenAISitecoreIntegration
             this.panel1.Controls.Add(this.queryLabel);
             this.panel1.Controls.Add(this.getItemFieldsBtn);
             this.panel1.Controls.Add(this.itemPathTextbox);
-            this.panel1.Controls.Add(this.translateBtn);
+            this.panel1.Controls.Add(this.getContentBtn);
             this.panel1.Controls.Add(this.languageDropdown);
             this.panel1.Controls.Add(this.languageLabel);
             this.panel1.Controls.Add(this.fieldListDropdown);
             this.panel1.Controls.Add(this.fieldListLabel);
             this.panel1.Controls.Add(this.itemPathLabel);
-            this.panel1.Location = new System.Drawing.Point(151, 101);
+            this.panel1.Location = new System.Drawing.Point(154, 101);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(967, 281);
             this.panel1.TabIndex = 1;
@@ -119,17 +119,17 @@ namespace GenAISitecoreIntegration
             this.itemPathTextbox.Size = new System.Drawing.Size(259, 26);
             this.itemPathTextbox.TabIndex = 3;
             // 
-            // translateBtn
+            // getContentBtn
             // 
-            this.translateBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.translateBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.translateBtn.Location = new System.Drawing.Point(744, 121);
-            this.translateBtn.Name = "translateBtn";
-            this.translateBtn.Size = new System.Drawing.Size(172, 45);
-            this.translateBtn.TabIndex = 6;
-            this.translateBtn.Text = "Translate";
-            this.translateBtn.UseVisualStyleBackColor = false;
-            this.translateBtn.Click += new System.EventHandler(this.translateBtn_Click);
+            this.getContentBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.getContentBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.getContentBtn.Location = new System.Drawing.Point(744, 121);
+            this.getContentBtn.Name = "getContentBtn";
+            this.getContentBtn.Size = new System.Drawing.Size(172, 45);
+            this.getContentBtn.TabIndex = 6;
+            this.getContentBtn.Text = "Get Content";
+            this.getContentBtn.UseVisualStyleBackColor = false;
+            this.getContentBtn.Click += new System.EventHandler(this.getContentBtn_Click);
             // 
             // languageDropdown
             // 
@@ -172,7 +172,7 @@ namespace GenAISitecoreIntegration
             // 
             this.panel2.Controls.Add(this.resultLabel);
             this.panel2.Controls.Add(this.resultTextBox);
-            this.panel2.Location = new System.Drawing.Point(199, 418);
+            this.panel2.Location = new System.Drawing.Point(202, 418);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(871, 230);
             this.panel2.TabIndex = 3;
@@ -200,16 +200,15 @@ namespace GenAISitecoreIntegration
             // 
             this.headerLabel.AutoSize = true;
             this.headerLabel.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.headerLabel.Location = new System.Drawing.Point(558, 51);
+            this.headerLabel.Location = new System.Drawing.Point(528, 51);
             this.headerLabel.Name = "headerLabel";
-            this.headerLabel.Size = new System.Drawing.Size(153, 32);
+            this.headerLabel.Size = new System.Drawing.Size(218, 32);
             this.headerLabel.TabIndex = 5;
-            this.headerLabel.Text = "Translation";
+            this.headerLabel.Text = "Content Analysis";
             // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeToolStripMenuItem,
@@ -217,7 +216,7 @@ namespace GenAISitecoreIntegration
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1269, 36);
-            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // homeToolStripMenuItem
@@ -268,19 +267,20 @@ namespace GenAISitecoreIntegration
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // TranslationForm
+            // ContentAnalysisForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1269, 673);
-            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.headerLabel);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "TranslationForm";
-            this.Text = "Translation";
-            this.Load += new System.EventHandler(this.TranslationForm_Load);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "ContentAnalysisForm";
+            this.Text = "  ";
+            this.Load += new System.EventHandler(this.ContentAnalysisForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -296,7 +296,7 @@ namespace GenAISitecoreIntegration
 
         private System.Windows.Forms.Label itemPathLabel;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button translateBtn;
+        private System.Windows.Forms.Button getContentBtn;
         private System.Windows.Forms.ComboBox languageDropdown;
         private System.Windows.Forms.Label languageLabel;
         private System.Windows.Forms.Panel panel2;
@@ -311,11 +311,11 @@ namespace GenAISitecoreIntegration
         private System.Windows.Forms.Label fieldListLabel;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem textGenerationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem translationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contentAnalysisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imageAnalysisToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 
