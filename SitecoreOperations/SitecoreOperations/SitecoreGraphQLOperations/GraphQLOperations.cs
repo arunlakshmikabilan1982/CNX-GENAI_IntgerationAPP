@@ -15,8 +15,6 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
 {
     public class GraphQLOperations
     {
-        string GraphQLUrl = ConfigurationManager.AppSettings["graphQLUrl"];
-        string AccessToken = ConfigurationManager.AppSettings["accessToken"];
         string PreviewGraphQLUrl = ConfigurationManager.AppSettings["previewGraphQLUrl"];
         string PreviewAccessToken = ConfigurationManager.AppSettings["previewAccessToken"];
         string AuthoringGraphQLUrl = ConfigurationManager.AppSettings["authoringGraphQLUrl"];
