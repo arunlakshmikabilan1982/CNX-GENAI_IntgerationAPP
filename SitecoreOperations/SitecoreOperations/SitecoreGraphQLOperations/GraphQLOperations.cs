@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GraphQL.Client;
 using GraphQL.Client.Http;
-using GraphQL.Client.Abstractions;
-using System.Net;
 using GraphQL.Client.Serializer.Newtonsoft;
 using System.Configuration;
 using SitecoreOperations.Models;
 using GraphQL;
-using System.Threading;
+using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using System.Net.Http;
 
@@ -26,6 +22,8 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
         string AuthoringGraphQLUrl = ConfigurationManager.AppSettings["authoringGraphQLUrl"];
         string AuthoringAccessToken = ConfigurationManager.AppSettings["authoringAccessToken"];
         string aricleblogGenAI = ConfigurationManager.AppSettings["articleblogGenAI"];
+        string askGenAI = ConfigurationManager.AppSettings["askGenAIBot"];
+
         public async Task GetItemFields()
         {
             var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
@@ -50,6 +48,61 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
                 };
             var graphQLResponse = await graphQLClient.SendQueryAsync<object>(request);
             Console.WriteLine(graphQLResponse.Data);
+        }
+
+        public async Task<GraphQLResponse<object>> AskGenAIBot(string AuthoringGraphQLUrl, string AuthoringAccessToken,
+           string Item, string FieldName, string Query, string Language)
+        {
+            var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
+            {
+                EndPoint = new Uri(AuthoringGraphQLUrl)
+            }, new NewtonsoftJsonSerializer());
+            graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + AuthoringAccessToken);
+
+            var genAIBotApiUrl = @"" + askGenAI;
+
+            var myObject = new GenAIBot
+            {
+                Query = Query
+            };
+
+            var objAsJson = JsonConvert.SerializeObject(myObject);
+            var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+
+            HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, genAIBotApiUrl);
+            httpRequest.Content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+
+            string resultContentString = string.Empty;
+            using (var client = new HttpClient())
+            {
+                //client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+                var result = await client.SendAsync(httpRequest);
+                resultContentString = await result.Content.ReadAsStringAsync();
+            }
+
+            string query = @"mutation($id:ID!, $language: String!, $fieldName:String!, $fieldvalue:String!)
+                                  {
+                                    updateItem(
+                                            input: {
+                                                database: ""master"",
+                                                itemId: $id,
+                                                language: $language,
+                                               fields: [{ name: $fieldName, value: $fieldvalue }]
+                                                }
+                                                ) {
+                                                item {
+                                                    itemId
+                                                }
+                                                }
+                                                }";
+            var request = new GraphQLRequest
+            {
+                Query = query,
+                Variables = new { id = Item, language = Language, fieldName = FieldName, fieldvalue = resultContentString }
+            };
+            var graphQLResponse = await graphQLClient.SendQueryAsync<object>(request);
+            return graphQLResponse;
+
         }
 
         // public async Task CreateArticleItem(String ParentItem, String ItemName, String Query, String Template)
