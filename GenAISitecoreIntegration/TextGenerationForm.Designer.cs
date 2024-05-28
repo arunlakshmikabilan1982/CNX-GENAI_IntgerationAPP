@@ -30,13 +30,13 @@ namespace GenAISitecoreIntegration
         private void InitializeComponent()
         {
             this.headerLabel = new System.Windows.Forms.Label();
-            this.pathLabel = new System.Windows.Forms.Label();
+            this.itemIdLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.itemNameTextbox = new System.Windows.Forms.TextBox();
             this.itemNameLabel = new System.Windows.Forms.Label();
             this.queryTextbox = new System.Windows.Forms.TextBox();
             this.queryLabel = new System.Windows.Forms.Label();
-            this.pathTextbox = new System.Windows.Forms.TextBox();
+            this.itemIdTextbox = new System.Windows.Forms.TextBox();
             this.createItemBtn = new System.Windows.Forms.Button();
             this.templateTypeDropdown = new System.Windows.Forms.ComboBox();
             this.templateTypeLabel = new System.Windows.Forms.Label();
@@ -68,15 +68,15 @@ namespace GenAISitecoreIntegration
             this.headerLabel.TabIndex = 8;
             this.headerLabel.Text = "Text Generation";
             // 
-            // pathLabel
+            // itemIdLabel
             // 
-            this.pathLabel.AutoSize = true;
-            this.pathLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pathLabel.Location = new System.Drawing.Point(30, 26);
-            this.pathLabel.Name = "pathLabel";
-            this.pathLabel.Size = new System.Drawing.Size(213, 23);
-            this.pathLabel.TabIndex = 0;
-            this.pathLabel.Text = "Path (Parent Item Path)";
+            this.itemIdLabel.AutoSize = true;
+            this.itemIdLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.itemIdLabel.Location = new System.Drawing.Point(30, 26);
+            this.itemIdLabel.Name = "itemIdLabel";
+            this.itemIdLabel.Size = new System.Drawing.Size(71, 23);
+            this.itemIdLabel.TabIndex = 0;
+            this.itemIdLabel.Text = "Item Id";
             // 
             // panel1
             // 
@@ -84,13 +84,13 @@ namespace GenAISitecoreIntegration
             this.panel1.Controls.Add(this.itemNameLabel);
             this.panel1.Controls.Add(this.queryTextbox);
             this.panel1.Controls.Add(this.queryLabel);
-            this.panel1.Controls.Add(this.pathTextbox);
+            this.panel1.Controls.Add(this.itemIdTextbox);
             this.panel1.Controls.Add(this.createItemBtn);
             this.panel1.Controls.Add(this.templateTypeDropdown);
             this.panel1.Controls.Add(this.templateTypeLabel);
             this.panel1.Controls.Add(this.itemTypeDropdown);
             this.panel1.Controls.Add(this.itemTypeLabel);
-            this.panel1.Controls.Add(this.pathLabel);
+            this.panel1.Controls.Add(this.itemIdLabel);
             this.panel1.Location = new System.Drawing.Point(64, 130);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1013, 238);
@@ -130,12 +130,12 @@ namespace GenAISitecoreIntegration
             this.queryLabel.TabIndex = 7;
             this.queryLabel.Text = "Query";
             // 
-            // pathTextbox
+            // itemIdTextbox
             // 
-            this.pathTextbox.Location = new System.Drawing.Point(34, 71);
-            this.pathTextbox.Name = "pathTextbox";
-            this.pathTextbox.Size = new System.Drawing.Size(280, 26);
-            this.pathTextbox.TabIndex = 3;
+            this.itemIdTextbox.Location = new System.Drawing.Point(34, 71);
+            this.itemIdTextbox.Name = "itemIdTextbox";
+            this.itemIdTextbox.Size = new System.Drawing.Size(280, 26);
+            this.itemIdTextbox.TabIndex = 3;
             // 
             // createItemBtn
             // 
@@ -315,7 +315,7 @@ namespace GenAISitecoreIntegration
         #endregion
 
         private System.Windows.Forms.Label headerLabel;
-        private System.Windows.Forms.Label pathLabel;
+        private System.Windows.Forms.Label itemIdLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button createItemBtn;
         private System.Windows.Forms.ComboBox templateTypeDropdown;
@@ -325,7 +325,7 @@ namespace GenAISitecoreIntegration
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label resultLabel;
         private System.Windows.Forms.RichTextBox resultTextBox;
-        private System.Windows.Forms.TextBox pathTextbox;
+        private System.Windows.Forms.TextBox itemIdTextbox;
         private System.Windows.Forms.RichTextBox noteTextBox;
         private System.Windows.Forms.TextBox queryTextbox;
         private System.Windows.Forms.Label queryLabel;

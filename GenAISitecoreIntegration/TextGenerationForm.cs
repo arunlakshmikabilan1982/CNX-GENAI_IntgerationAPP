@@ -24,7 +24,7 @@ namespace GenAISitecoreIntegration
 
         private async void createItemBtn_Click(object sender, EventArgs e)
         {
-            var path = pathTextbox.Text;
+            var itemId = itemIdTextbox.Text;
             var itemType = itemTypeDropdown.SelectedItem;
             var query = queryTextbox.Text;
             var templateType = templateTypeDropdown.SelectedItem;
@@ -33,10 +33,10 @@ namespace GenAISitecoreIntegration
             switch(itemType)
             {
                 case ItemType.Article:
-                    result = await qLOperations.CreateArticleItem(path, itemName, query, templateType.ToString());
+                    result = await qLOperations.CreateArticleItem(itemId, itemName, query, templateType.ToString());
                     break;
                 case ItemType.Blog:
-                    result = await qLOperations.CreateBlogItem(path, itemName, query, templateType.ToString());
+                    result = await qLOperations.CreateBlogItem(itemId, itemName, query, templateType.ToString());
                     break;
             }
         }

@@ -1,4 +1,5 @@
-﻿using SitecoreOperations.Models;
+﻿using GenAISitecoreIntegration.Models;
+using SitecoreOperations.Models;
 using SitecoreOperations.SitecoreGraphQLOperations;
 using System;
 using System.Windows.Forms;
@@ -9,6 +10,7 @@ namespace GenAISitecoreIntegration
     {
         private GraphQLOperations qLOperations;
         private Items itemFields;
+        private AppSettings appSettings;
 
         public ContentAnalysisForm()
         {
@@ -19,11 +21,12 @@ namespace GenAISitecoreIntegration
         {
             qLOperations = new GraphQLOperations();
             languageDropdown.DataSource = Enum.GetValues(typeof(Language));
+            appSettings = Helper.GetAppSettings();
         }
 
         private async void getItemFieldsBtn_Click(object sender, EventArgs e)
         {
-            var path = itemPathTextbox.Text;
+            var id = itemIdTextbox.Text;
             itemFields = await qLOperations.GetSitecoreItem(path);
             if(itemFields!=null && itemFields.fields?.Length>0)
             {
@@ -38,6 +41,15 @@ namespace GenAISitecoreIntegration
         private void fieldListDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void getContentBtn_Click(object sender, EventArgs e)
+        {
+            var itemId = itemIdTextbox.Text;
+            var query = queryTextbox.Text;
+            var language = languageDropdown.SelectedValue.ToString();
+            var field = fieldListDropdown.SelectedValue.ToString();
+            var result = qLOperations.AskGenAIBot(appSettings.AuthoringGraphQLUrl, appSettings.AuthoringAccessToken, itemId, field, query, language);
         }
 
         private void textGenerationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -71,14 +83,6 @@ namespace GenAISitecoreIntegration
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void getContentBtn_Click(object sender, EventArgs e)
-        {
-            var query = queryTextbox.Text;
-            var language = languageDropdown.SelectedIndex.ToString();
-            var field = fieldListDropdown.SelectedIndex.ToString();
-            _ = qLOperations.AskGenAIBot(itemFields.id, field, query, language);
         }
     }
 }
