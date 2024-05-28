@@ -32,7 +32,7 @@ namespace GenAISitecoreIntegration
             this.itemPathLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.itemIdTextbox = new System.Windows.Forms.TextBox();
-            this.translateBtn = new System.Windows.Forms.Button();
+            this.uploadBtn = new System.Windows.Forms.Button();
             this.imageUploadLabel = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.resultLabel = new System.Windows.Forms.Label();
@@ -68,7 +68,7 @@ namespace GenAISitecoreIntegration
             this.panel1.Controls.Add(this.browseBtn);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.itemIdTextbox);
-            this.panel1.Controls.Add(this.translateBtn);
+            this.panel1.Controls.Add(this.uploadBtn);
             this.panel1.Controls.Add(this.imageUploadLabel);
             this.panel1.Controls.Add(this.itemPathLabel);
             this.panel1.Location = new System.Drawing.Point(121, 101);
@@ -83,17 +83,17 @@ namespace GenAISitecoreIntegration
             this.itemIdTextbox.Size = new System.Drawing.Size(259, 26);
             this.itemIdTextbox.TabIndex = 3;
             // 
-            // translateBtn
+            // uploadBtn
             // 
-            this.translateBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.translateBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.translateBtn.Location = new System.Drawing.Point(744, 121);
-            this.translateBtn.Name = "translateBtn";
-            this.translateBtn.Size = new System.Drawing.Size(172, 45);
-            this.translateBtn.TabIndex = 6;
-            this.translateBtn.Text = "Translate";
-            this.translateBtn.UseVisualStyleBackColor = false;
-            this.translateBtn.Click += new System.EventHandler(this.translateBtn_Click);
+            this.uploadBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.uploadBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uploadBtn.Location = new System.Drawing.Point(744, 121);
+            this.uploadBtn.Name = "uploadBtn";
+            this.uploadBtn.Size = new System.Drawing.Size(172, 45);
+            this.uploadBtn.TabIndex = 6;
+            this.uploadBtn.Text = "Upload";
+            this.uploadBtn.UseVisualStyleBackColor = false;
+            this.uploadBtn.Click += new System.EventHandler(this.translateBtn_Click);
             // 
             // imageUploadLabel
             // 
@@ -146,6 +146,7 @@ namespace GenAISitecoreIntegration
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeToolStripMenuItem,
@@ -254,7 +255,7 @@ namespace GenAISitecoreIntegration
 
         private System.Windows.Forms.Label itemPathLabel;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button translateBtn;
+        private System.Windows.Forms.Button uploadBtn;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label resultLabel;
         private System.Windows.Forms.RichTextBox resultTextBox;
