@@ -23,7 +23,7 @@ namespace GenAISitecoreIntegration
 
         private void translateBtn_Click(object sender, EventArgs e)
         {
-            var path = itemPathTextbox.Text;
+            var path = itemIdTextbox.Text;
             var field = fieldListDropdown.SelectedItem.ToString();
             var language = languageDropdown.SelectedItem.ToString();
             var query = queryTextbox.Text;
@@ -33,7 +33,7 @@ namespace GenAISitecoreIntegration
 
         private async void getItemFieldsBtn_Click(object sender, EventArgs e)
         {
-            var path = itemPathTextbox.Text;
+            var path = itemIdTextbox.Text;
             itemFields = await qLOperations.GetSitecoreItem(path);
             if(itemFields!=null && itemFields.fields?.Length>0)
             {
@@ -81,6 +81,11 @@ namespace GenAISitecoreIntegration
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
         }
     }
 }

@@ -29,12 +29,12 @@ namespace GenAISitecoreIntegration
         /// </summary>
         private void InitializeComponent()
         {
-            this.itemPathLabel = new System.Windows.Forms.Label();
+            this.itemIdLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.queryTextbox = new System.Windows.Forms.TextBox();
             this.queryLabel = new System.Windows.Forms.Label();
             this.getItemFieldsBtn = new System.Windows.Forms.Button();
-            this.itemPathTextbox = new System.Windows.Forms.TextBox();
+            this.itemIdTextbox = new System.Windows.Forms.TextBox();
             this.getContentBtn = new System.Windows.Forms.Button();
             this.languageDropdown = new System.Windows.Forms.ComboBox();
             this.languageLabel = new System.Windows.Forms.Label();
@@ -56,28 +56,28 @@ namespace GenAISitecoreIntegration
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // itemPathLabel
+            // itemIdLabel
             // 
-            this.itemPathLabel.AutoSize = true;
-            this.itemPathLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.itemPathLabel.Location = new System.Drawing.Point(41, 35);
-            this.itemPathLabel.Name = "itemPathLabel";
-            this.itemPathLabel.Size = new System.Drawing.Size(93, 23);
-            this.itemPathLabel.TabIndex = 0;
-            this.itemPathLabel.Text = "Item Path";
+            this.itemIdLabel.AutoSize = true;
+            this.itemIdLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.itemIdLabel.Location = new System.Drawing.Point(41, 35);
+            this.itemIdLabel.Name = "itemIdLabel";
+            this.itemIdLabel.Size = new System.Drawing.Size(71, 23);
+            this.itemIdLabel.TabIndex = 0;
+            this.itemIdLabel.Text = "Item Id";
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.queryTextbox);
             this.panel1.Controls.Add(this.queryLabel);
             this.panel1.Controls.Add(this.getItemFieldsBtn);
-            this.panel1.Controls.Add(this.itemPathTextbox);
+            this.panel1.Controls.Add(this.itemIdTextbox);
             this.panel1.Controls.Add(this.getContentBtn);
             this.panel1.Controls.Add(this.languageDropdown);
             this.panel1.Controls.Add(this.languageLabel);
             this.panel1.Controls.Add(this.fieldListDropdown);
             this.panel1.Controls.Add(this.fieldListLabel);
-            this.panel1.Controls.Add(this.itemPathLabel);
+            this.panel1.Controls.Add(this.itemIdLabel);
             this.panel1.Location = new System.Drawing.Point(154, 101);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(967, 281);
@@ -112,12 +112,12 @@ namespace GenAISitecoreIntegration
             this.getItemFieldsBtn.UseVisualStyleBackColor = false;
             this.getItemFieldsBtn.Click += new System.EventHandler(this.getItemFieldsBtn_Click);
             // 
-            // itemPathTextbox
+            // itemIdTextbox
             // 
-            this.itemPathTextbox.Location = new System.Drawing.Point(45, 73);
-            this.itemPathTextbox.Name = "itemPathTextbox";
-            this.itemPathTextbox.Size = new System.Drawing.Size(259, 26);
-            this.itemPathTextbox.TabIndex = 3;
+            this.itemIdTextbox.Location = new System.Drawing.Point(45, 73);
+            this.itemIdTextbox.Name = "itemIdTextbox";
+            this.itemIdTextbox.Size = new System.Drawing.Size(259, 26);
+            this.itemIdTextbox.TabIndex = 3;
             // 
             // getContentBtn
             // 
@@ -209,6 +209,7 @@ namespace GenAISitecoreIntegration
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeToolStripMenuItem,
@@ -294,7 +295,7 @@ namespace GenAISitecoreIntegration
 
         #endregion
 
-        private System.Windows.Forms.Label itemPathLabel;
+        private System.Windows.Forms.Label itemIdLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button getContentBtn;
         private System.Windows.Forms.ComboBox languageDropdown;
@@ -303,7 +304,7 @@ namespace GenAISitecoreIntegration
         private System.Windows.Forms.Label resultLabel;
         private System.Windows.Forms.RichTextBox resultTextBox;
         private System.Windows.Forms.Label headerLabel;
-        private System.Windows.Forms.TextBox itemPathTextbox;
+        private System.Windows.Forms.TextBox itemIdTextbox;
         private System.Windows.Forms.Button getItemFieldsBtn;
         private System.Windows.Forms.Label queryLabel;
         private System.Windows.Forms.TextBox queryTextbox;

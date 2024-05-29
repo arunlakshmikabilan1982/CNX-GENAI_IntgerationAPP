@@ -48,9 +48,8 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             Console.WriteLine(graphQLResponse.Data);
         }
 
-        //public async Task<GraphQLResponse<object>> AskGenAIBot(string AuthoringGraphQLUrl, string AuthoringAccessToken,
-        //string Item, string FieldName, string Query, string Language)
-        public async Task<GraphQLResponse<object>> AskGenAIBot(string Item, string FieldName, string Query, string Language)
+        public async Task<GraphQLResponse<object>> AskGenAIBot(string AuthoringGraphQLUrl, string AuthoringAccessToken,
+        string Item, string FieldName, string Query, string Language)
         {
             var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
             {

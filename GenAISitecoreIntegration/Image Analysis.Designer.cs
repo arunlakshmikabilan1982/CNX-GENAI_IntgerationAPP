@@ -31,15 +31,9 @@ namespace GenAISitecoreIntegration
         {
             this.itemPathLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.queryTextbox = new System.Windows.Forms.TextBox();
-            this.queryLabel = new System.Windows.Forms.Label();
-            this.getItemFieldsBtn = new System.Windows.Forms.Button();
-            this.itemPathTextbox = new System.Windows.Forms.TextBox();
-            this.translateBtn = new System.Windows.Forms.Button();
-            this.languageDropdown = new System.Windows.Forms.ComboBox();
-            this.languageLabel = new System.Windows.Forms.Label();
-            this.fieldListDropdown = new System.Windows.Forms.ComboBox();
-            this.fieldListLabel = new System.Windows.Forms.Label();
+            this.itemIdTextbox = new System.Windows.Forms.TextBox();
+            this.uploadBtn = new System.Windows.Forms.Button();
+            this.imageUploadLabel = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.resultLabel = new System.Windows.Forms.Label();
             this.resultTextBox = new System.Windows.Forms.RichTextBox();
@@ -51,6 +45,9 @@ namespace GenAISitecoreIntegration
             this.contentAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.browseBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -62,111 +59,51 @@ namespace GenAISitecoreIntegration
             this.itemPathLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.itemPathLabel.Location = new System.Drawing.Point(41, 35);
             this.itemPathLabel.Name = "itemPathLabel";
-            this.itemPathLabel.Size = new System.Drawing.Size(93, 23);
+            this.itemPathLabel.Size = new System.Drawing.Size(71, 23);
             this.itemPathLabel.TabIndex = 0;
-            this.itemPathLabel.Text = "Item Path";
+            this.itemPathLabel.Text = "Item Id";
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.queryTextbox);
-            this.panel1.Controls.Add(this.queryLabel);
-            this.panel1.Controls.Add(this.getItemFieldsBtn);
-            this.panel1.Controls.Add(this.itemPathTextbox);
-            this.panel1.Controls.Add(this.translateBtn);
-            this.panel1.Controls.Add(this.languageDropdown);
-            this.panel1.Controls.Add(this.languageLabel);
-            this.panel1.Controls.Add(this.fieldListDropdown);
-            this.panel1.Controls.Add(this.fieldListLabel);
+            this.panel1.Controls.Add(this.browseBtn);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.itemIdTextbox);
+            this.panel1.Controls.Add(this.uploadBtn);
+            this.panel1.Controls.Add(this.imageUploadLabel);
             this.panel1.Controls.Add(this.itemPathLabel);
             this.panel1.Location = new System.Drawing.Point(121, 101);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(967, 281);
             this.panel1.TabIndex = 1;
             // 
-            // queryTextbox
+            // itemIdTextbox
             // 
-            this.queryTextbox.Location = new System.Drawing.Point(429, 73);
-            this.queryTextbox.Name = "queryTextbox";
-            this.queryTextbox.Size = new System.Drawing.Size(259, 26);
-            this.queryTextbox.TabIndex = 3;
+            this.itemIdTextbox.Location = new System.Drawing.Point(45, 73);
+            this.itemIdTextbox.Name = "itemIdTextbox";
+            this.itemIdTextbox.Size = new System.Drawing.Size(259, 26);
+            this.itemIdTextbox.TabIndex = 3;
             // 
-            // queryLabel
+            // uploadBtn
             // 
-            this.queryLabel.AutoSize = true;
-            this.queryLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.queryLabel.Location = new System.Drawing.Point(425, 35);
-            this.queryLabel.Name = "queryLabel";
-            this.queryLabel.Size = new System.Drawing.Size(64, 23);
-            this.queryLabel.TabIndex = 9;
-            this.queryLabel.Text = "Query";
+            this.uploadBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.uploadBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uploadBtn.Location = new System.Drawing.Point(744, 121);
+            this.uploadBtn.Name = "uploadBtn";
+            this.uploadBtn.Size = new System.Drawing.Size(172, 45);
+            this.uploadBtn.TabIndex = 6;
+            this.uploadBtn.Text = "Upload";
+            this.uploadBtn.UseVisualStyleBackColor = false;
+            this.uploadBtn.Click += new System.EventHandler(this.translateBtn_Click);
             // 
-            // getItemFieldsBtn
+            // imageUploadLabel
             // 
-            this.getItemFieldsBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.getItemFieldsBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.getItemFieldsBtn.Location = new System.Drawing.Point(79, 121);
-            this.getItemFieldsBtn.Name = "getItemFieldsBtn";
-            this.getItemFieldsBtn.Size = new System.Drawing.Size(188, 45);
-            this.getItemFieldsBtn.TabIndex = 7;
-            this.getItemFieldsBtn.Text = "Get Item Fields";
-            this.getItemFieldsBtn.UseVisualStyleBackColor = false;
-            this.getItemFieldsBtn.Click += new System.EventHandler(this.getItemFieldsBtn_Click);
-            // 
-            // itemPathTextbox
-            // 
-            this.itemPathTextbox.Location = new System.Drawing.Point(45, 73);
-            this.itemPathTextbox.Name = "itemPathTextbox";
-            this.itemPathTextbox.Size = new System.Drawing.Size(259, 26);
-            this.itemPathTextbox.TabIndex = 3;
-            // 
-            // translateBtn
-            // 
-            this.translateBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.translateBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.translateBtn.Location = new System.Drawing.Point(744, 121);
-            this.translateBtn.Name = "translateBtn";
-            this.translateBtn.Size = new System.Drawing.Size(172, 45);
-            this.translateBtn.TabIndex = 6;
-            this.translateBtn.Text = "Translate";
-            this.translateBtn.UseVisualStyleBackColor = false;
-            this.translateBtn.Click += new System.EventHandler(this.translateBtn_Click);
-            // 
-            // languageDropdown
-            // 
-            this.languageDropdown.FormattingEnabled = true;
-            this.languageDropdown.Location = new System.Drawing.Point(429, 227);
-            this.languageDropdown.Name = "languageDropdown";
-            this.languageDropdown.Size = new System.Drawing.Size(259, 28);
-            this.languageDropdown.TabIndex = 3;
-            // 
-            // languageLabel
-            // 
-            this.languageLabel.AutoSize = true;
-            this.languageLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.languageLabel.Location = new System.Drawing.Point(425, 185);
-            this.languageLabel.Name = "languageLabel";
-            this.languageLabel.Size = new System.Drawing.Size(93, 23);
-            this.languageLabel.TabIndex = 4;
-            this.languageLabel.Text = "Language";
-            // 
-            // fieldListDropdown
-            // 
-            this.fieldListDropdown.FormattingEnabled = true;
-            this.fieldListDropdown.Location = new System.Drawing.Point(45, 227);
-            this.fieldListDropdown.Name = "fieldListDropdown";
-            this.fieldListDropdown.Size = new System.Drawing.Size(259, 28);
-            this.fieldListDropdown.TabIndex = 3;
-            this.fieldListDropdown.SelectedIndexChanged += new System.EventHandler(this.fieldListDropdown_SelectedIndexChanged);
-            // 
-            // fieldListLabel
-            // 
-            this.fieldListLabel.AutoSize = true;
-            this.fieldListLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fieldListLabel.Location = new System.Drawing.Point(41, 185);
-            this.fieldListLabel.Name = "fieldListLabel";
-            this.fieldListLabel.Size = new System.Drawing.Size(89, 23);
-            this.fieldListLabel.TabIndex = 2;
-            this.fieldListLabel.Text = "Field List";
+            this.imageUploadLabel.AutoSize = true;
+            this.imageUploadLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imageUploadLabel.Location = new System.Drawing.Point(44, 143);
+            this.imageUploadLabel.Name = "imageUploadLabel";
+            this.imageUploadLabel.Size = new System.Drawing.Size(126, 23);
+            this.imageUploadLabel.TabIndex = 2;
+            this.imageUploadLabel.Text = "Image Upload";
             // 
             // panel2
             // 
@@ -268,6 +205,28 @@ namespace GenAISitecoreIntegration
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(48, 190);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(312, 26);
+            this.textBox1.TabIndex = 7;
+            // 
+            // browseBtn
+            // 
+            this.browseBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.browseBtn.Location = new System.Drawing.Point(366, 186);
+            this.browseBtn.Name = "browseBtn";
+            this.browseBtn.Size = new System.Drawing.Size(95, 32);
+            this.browseBtn.TabIndex = 8;
+            this.browseBtn.Text = "Browse";
+            this.browseBtn.UseVisualStyleBackColor = true;
+            // 
             // ImageAnalysisForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -296,19 +255,13 @@ namespace GenAISitecoreIntegration
 
         private System.Windows.Forms.Label itemPathLabel;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button translateBtn;
-        private System.Windows.Forms.ComboBox languageDropdown;
-        private System.Windows.Forms.Label languageLabel;
+        private System.Windows.Forms.Button uploadBtn;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label resultLabel;
         private System.Windows.Forms.RichTextBox resultTextBox;
         private System.Windows.Forms.Label headerLabel;
-        private System.Windows.Forms.TextBox itemPathTextbox;
-        private System.Windows.Forms.Button getItemFieldsBtn;
-        private System.Windows.Forms.Label queryLabel;
-        private System.Windows.Forms.TextBox queryTextbox;
-        private System.Windows.Forms.ComboBox fieldListDropdown;
-        private System.Windows.Forms.Label fieldListLabel;
+        private System.Windows.Forms.TextBox itemIdTextbox;
+        private System.Windows.Forms.Label imageUploadLabel;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem textGenerationToolStripMenuItem;
@@ -316,6 +269,9 @@ namespace GenAISitecoreIntegration
         private System.Windows.Forms.ToolStripMenuItem contentAnalysisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imageAnalysisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button browseBtn;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
