@@ -104,7 +104,8 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
         }
 
         // public async Task CreateArticleItem(String ParentItem, String ItemName, String Query, String Template)
-        public async Task<GraphQLResponse<object>> CreateArticleItem(string ParentItem, string ItemName, string Query, string Template)
+        public async Task<GraphQLResponse<object>> CreateArticleItem(string AuthoringGraphQLUrl, string AuthoringAccessToken,
+            string ParentItem, string ItemName, string Query, string Template)
         {
             var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
             {
@@ -116,11 +117,24 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
 
             #region Gen AI Call
 
-            var genAIBotApiUrl = @"" + aricleblogGenAI + Query + "/article/" + Template;
+            var myObject = new ContentGenerator
+            {
+                Query = Query,
+                ContentType = "article",
+                FormatType = Template
+            };
+
+            var objAsJson = JsonConvert.SerializeObject(myObject);
+            var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+            var genAIBotApiUrl = @"" + aricleblogGenAI;
+
+            HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, genAIBotApiUrl);
+            httpRequest.Content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+
             string resultContentString = string.Empty;
             using (var client = new HttpClient())
             {
-                var result = await client.GetAsync(genAIBotApiUrl);
+                var result = await client.SendAsync(httpRequest);
                 resultContentString = await result.Content.ReadAsStringAsync();
             }
             var articleItemAI = new Article();
@@ -181,7 +195,8 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
 
 
         // public async Task CreateBlogItem(String ParentItem, String ItemName, String Query, String Template)
-        public async Task<GraphQLResponse<object>> CreateBlogItem(String ParentItem, String ItemName, String Query, String Template)
+        public async Task<GraphQLResponse<object>> CreateBlogItem(string AuthoringGraphQLUrl, string AuthoringAccessToken,
+            String ParentItem, String ItemName, String Query, String Template)
         {
             var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
             {

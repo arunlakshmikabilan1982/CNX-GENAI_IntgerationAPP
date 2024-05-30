@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\ContentGenerator.cs" />
     <Compile Include="Models\Dataitem.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\GenAIBot.cs" />
