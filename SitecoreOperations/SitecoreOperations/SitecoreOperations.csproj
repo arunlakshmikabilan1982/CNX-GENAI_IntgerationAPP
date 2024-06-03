@@ -92,6 +92,7 @@
     <Compile Include="Models\GenAIBot.cs" />
     <Compile Include="Models\SitecoreItemFields.cs" />
     <Compile Include="Models\SitecoreItem.cs" />
+    <Compile Include="Models\TransalteGenAIRequestBody.cs" />
     <Compile Include="Models\Uploaded.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

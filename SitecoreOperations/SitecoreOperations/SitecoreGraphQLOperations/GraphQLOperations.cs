@@ -21,7 +21,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
         string AuthoringAccessToken = ConfigurationManager.AppSettings["authoringAccessToken"];
         string aricleblogGenAI = ConfigurationManager.AppSettings["articleblogGenAI"];
         string askGenAI = ConfigurationManager.AppSettings["askGenAIBot"];
-
+        string TranslateGenAI = ConfigurationManager.AppSettings["aiTranslator"];
         public async Task GetItemFields()
         {
             var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
@@ -283,9 +283,102 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
                 throw e;
 
             }
+        }
+
+            public async Task<GraphQLResponse<Object>> UpdateSitecoreItem(string itemPath, string language, string fieldName, string fieldValue)
+        {
+            try
+            {
+                
+                var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
+                {
+                    EndPoint = new Uri(AuthoringGraphQLUrl)
+                }, new NewtonsoftJsonSerializer());
+
+
+
+
+                var genAIBotApiUrl = @"" + TranslateGenAI;
+
+                var myObject = new TransalteGenAIRequestBody
+                {
+                    text = fieldValue,
+                    sourcelanguage = "English",
+                    targetlanguage = language
+                };
+
+                var objAsJson = JsonConvert.SerializeObject(myObject);
+                var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+
+                HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, genAIBotApiUrl);
+                httpRequest.Content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+
+                string resultContentString = string.Empty;
+                using (var client = new HttpClient())
+                {
+                    //client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+                    var result = await client.SendAsync(httpRequest);
+                    resultContentString = await result.Content.ReadAsStringAsync();
+                }
+                string graphqlLanguage = "en";
+                switch (language)
+                {
+                    case "Arabic":
+                        graphqlLanguage = "ar-AE";
+                        break;
+
+
+                    case "Chinese":
+                        graphqlLanguage = "zh-CN";
+                        break;
+                }
+
+                graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + AuthoringAccessToken);
+
+                string query = @"mutation($itemPath: String!,$language: String!, $fieldName:String!, $fieldValue:ID!)
+                                  {
+                                    updateItem(
+                                            input: {
+                                                path: $itemPath,
+                                                version: 1 ,
+                                                language: $language,
+                                               fields: [{ name: $fieldName, value: $fieldValue }
+                                                ]
+                                                }
+                                                ) {
+                                                item {
+                                                    itemId
+                                                }
+                                                }
+                                                }";
+                var request = new GraphQLRequest
+                {
+                    Query = query,
+                    Variables = new
+                    {
+                        itemPath = itemPath,
+                        fieldName = fieldName,
+                        language = graphqlLanguage,
+                        fieldValue = resultContentString,
+                    }
+                };
+                var graphQLResponse = await graphQLClient.SendMutationAsync<object>(request);
+                if(graphQLResponse.Errors != null)
+                {
+                    return null;
+                }
+                Console.WriteLine(graphQLResponse.Data);
+                return graphQLResponse;
+            }
+            catch (Exception e)
+            {
+                throw e;
+
+            }
+        }
 
 
         }
     }
-}
+
 
