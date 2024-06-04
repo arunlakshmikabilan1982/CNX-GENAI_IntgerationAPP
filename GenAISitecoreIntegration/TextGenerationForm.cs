@@ -1,4 +1,5 @@
-﻿using SitecoreOperations.SitecoreGraphQLOperations;
+﻿using GenAISitecoreIntegration.Models;
+using SitecoreOperations.SitecoreGraphQLOperations;
 using System;
 using System.Windows.Forms;
 
@@ -6,7 +7,7 @@ namespace GenAISitecoreIntegration
 {
     public partial class TextGenerationForm : Form
     {
-
+        private AppSettings appSettings;
         private GraphQLOperations qLOperations;
 
         public TextGenerationForm()
@@ -20,6 +21,7 @@ namespace GenAISitecoreIntegration
             noteTextBox.Hide();
             itemTypeDropdown.DataSource = Enum.GetValues(typeof(ItemType));
             templateTypeDropdown.DataSource = Enum.GetValues(typeof(TemplateType));
+            appSettings = Helper.GetAppSettings();
         }
 
         private async void createItemBtn_Click(object sender, EventArgs e)
@@ -33,10 +35,10 @@ namespace GenAISitecoreIntegration
             switch(itemType)
             {
                 case ItemType.Article:
-                    result = await qLOperations.CreateArticleItem(itemId, itemName, query, templateType.ToString());
+                    result = await qLOperations.CreateArticleItem(appSettings.AuthoringGraphQLUrl, appSettings.AuthoringAccessToken, itemId, itemName, query, templateType.ToString());
                     break;
                 case ItemType.Blog:
-                    result = await qLOperations.CreateBlogItem(itemId, itemName, query, templateType.ToString());
+                    result = await qLOperations.CreateBlogItem(appSettings.AuthoringGraphQLUrl, appSettings.AuthoringAccessToken, itemId, itemName, query, templateType.ToString());
                     break;
             }
         }
