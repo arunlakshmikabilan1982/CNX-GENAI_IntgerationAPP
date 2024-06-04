@@ -31,9 +31,11 @@ namespace GenAISitecoreIntegration
         {
             this.itemPathLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.browseBtn = new System.Windows.Forms.Button();
+            this.filePathTextbox = new System.Windows.Forms.TextBox();
             this.itemIdTextbox = new System.Windows.Forms.TextBox();
             this.uploadBtn = new System.Windows.Forms.Button();
-            this.imageUploadLabel = new System.Windows.Forms.Label();
+            this.fileUploadLabel = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.resultLabel = new System.Windows.Forms.Label();
             this.resultTextBox = new System.Windows.Forms.RichTextBox();
@@ -46,8 +48,6 @@ namespace GenAISitecoreIntegration
             this.imageAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.browseBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -66,52 +66,70 @@ namespace GenAISitecoreIntegration
             // panel1
             // 
             this.panel1.Controls.Add(this.browseBtn);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.filePathTextbox);
             this.panel1.Controls.Add(this.itemIdTextbox);
             this.panel1.Controls.Add(this.uploadBtn);
-            this.panel1.Controls.Add(this.imageUploadLabel);
+            this.panel1.Controls.Add(this.fileUploadLabel);
             this.panel1.Controls.Add(this.itemPathLabel);
-            this.panel1.Location = new System.Drawing.Point(121, 101);
+            this.panel1.Location = new System.Drawing.Point(169, 101);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(967, 281);
+            this.panel1.Size = new System.Drawing.Size(871, 259);
             this.panel1.TabIndex = 1;
+            // 
+            // browseBtn
+            // 
+            this.browseBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.browseBtn.Location = new System.Drawing.Point(458, 181);
+            this.browseBtn.Name = "browseBtn";
+            this.browseBtn.Size = new System.Drawing.Size(128, 45);
+            this.browseBtn.TabIndex = 8;
+            this.browseBtn.Text = "Browse";
+            this.browseBtn.UseVisualStyleBackColor = true;
+            this.browseBtn.Click += new System.EventHandler(this.browseBtn_Click);
+            // 
+            // filePathTextbox
+            // 
+            this.filePathTextbox.Location = new System.Drawing.Point(48, 190);
+            this.filePathTextbox.Name = "filePathTextbox";
+            this.filePathTextbox.Size = new System.Drawing.Size(404, 26);
+            this.filePathTextbox.TabIndex = 7;
             // 
             // itemIdTextbox
             // 
             this.itemIdTextbox.Location = new System.Drawing.Point(45, 73);
             this.itemIdTextbox.Name = "itemIdTextbox";
-            this.itemIdTextbox.Size = new System.Drawing.Size(259, 26);
+            this.itemIdTextbox.Size = new System.Drawing.Size(541, 26);
             this.itemIdTextbox.TabIndex = 3;
             // 
             // uploadBtn
             // 
             this.uploadBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.uploadBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uploadBtn.Location = new System.Drawing.Point(744, 121);
+            this.uploadBtn.Location = new System.Drawing.Point(641, 109);
             this.uploadBtn.Name = "uploadBtn";
-            this.uploadBtn.Size = new System.Drawing.Size(172, 45);
+            this.uploadBtn.Size = new System.Drawing.Size(186, 45);
             this.uploadBtn.TabIndex = 6;
             this.uploadBtn.Text = "Upload";
             this.uploadBtn.UseVisualStyleBackColor = false;
-            this.uploadBtn.Click += new System.EventHandler(this.translateBtn_Click);
+            this.uploadBtn.Click += new System.EventHandler(this.uploadBtn_Click);
             // 
-            // imageUploadLabel
+            // fileUploadLabel
             // 
-            this.imageUploadLabel.AutoSize = true;
-            this.imageUploadLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.imageUploadLabel.Location = new System.Drawing.Point(44, 143);
-            this.imageUploadLabel.Name = "imageUploadLabel";
-            this.imageUploadLabel.Size = new System.Drawing.Size(126, 23);
-            this.imageUploadLabel.TabIndex = 2;
-            this.imageUploadLabel.Text = "Image Upload";
+            this.fileUploadLabel.AutoSize = true;
+            this.fileUploadLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fileUploadLabel.Location = new System.Drawing.Point(44, 143);
+            this.fileUploadLabel.Name = "fileUploadLabel";
+            this.fileUploadLabel.Size = new System.Drawing.Size(105, 23);
+            this.fileUploadLabel.TabIndex = 2;
+            this.fileUploadLabel.Text = "File Upload";
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.resultLabel);
             this.panel2.Controls.Add(this.resultTextBox);
-            this.panel2.Location = new System.Drawing.Point(169, 418);
+            this.panel2.Location = new System.Drawing.Point(169, 407);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(871, 230);
+            this.panel2.Size = new System.Drawing.Size(871, 237);
             this.panel2.TabIndex = 3;
             // 
             // resultLabel
@@ -129,7 +147,7 @@ namespace GenAISitecoreIntegration
             this.resultTextBox.Location = new System.Drawing.Point(34, 64);
             this.resultTextBox.Name = "resultTextBox";
             this.resultTextBox.ReadOnly = true;
-            this.resultTextBox.Size = new System.Drawing.Size(793, 137);
+            this.resultTextBox.Size = new System.Drawing.Size(793, 135);
             this.resultTextBox.TabIndex = 0;
             this.resultTextBox.Text = "";
             // 
@@ -146,7 +164,6 @@ namespace GenAISitecoreIntegration
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeToolStripMenuItem,
@@ -208,24 +225,6 @@ namespace GenAISitecoreIntegration
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(48, 190);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(312, 26);
-            this.textBox1.TabIndex = 7;
-            // 
-            // browseBtn
-            // 
-            this.browseBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.browseBtn.Location = new System.Drawing.Point(366, 186);
-            this.browseBtn.Name = "browseBtn";
-            this.browseBtn.Size = new System.Drawing.Size(95, 32);
-            this.browseBtn.TabIndex = 8;
-            this.browseBtn.Text = "Browse";
-            this.browseBtn.UseVisualStyleBackColor = true;
             // 
             // ImageAnalysisForm
             // 
@@ -261,7 +260,7 @@ namespace GenAISitecoreIntegration
         private System.Windows.Forms.RichTextBox resultTextBox;
         private System.Windows.Forms.Label headerLabel;
         private System.Windows.Forms.TextBox itemIdTextbox;
-        private System.Windows.Forms.Label imageUploadLabel;
+        private System.Windows.Forms.Label fileUploadLabel;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem textGenerationToolStripMenuItem;
@@ -271,7 +270,7 @@ namespace GenAISitecoreIntegration
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button browseBtn;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox filePathTextbox;
     }
 }
 

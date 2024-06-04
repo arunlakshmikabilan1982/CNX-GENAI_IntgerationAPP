@@ -2,6 +2,7 @@
 using SitecoreOperations.Models;
 using SitecoreOperations.SitecoreGraphQLOperations;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GenAISitecoreIntegration
@@ -27,7 +28,7 @@ namespace GenAISitecoreIntegration
         private async void getItemFieldsBtn_Click(object sender, EventArgs e)
         {
             var id = itemIdTextbox.Text;
-            itemFields = await qLOperations.GetSitecoreItem(path);
+            itemFields = await qLOperations.GetSitecoreItem(id);
             if(itemFields!=null && itemFields.fields?.Length>0)
             {
                 fieldListDropdown.DisplayMember = "name";
@@ -35,12 +36,19 @@ namespace GenAISitecoreIntegration
                 fieldListDropdown.DataSource = itemFields.fields;
 
             }
-            resultTextBox.Text = "No Fields Found";
         }
         
         private void fieldListDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            var selectedField = itemFields.fields.ToList().FirstOrDefault(x => x.name.Equals(fieldListDropdown.SelectedValue.ToString()));
+            if (selectedField != null)
+            {
+                resultTextBox.Text = string.Format("Item: {0}\nSelected Field Are Below:\nField Name: {1}\nField Value: {2}", itemFields.name, selectedField.name, selectedField.value);
+            }
+            else
+            {
+                resultTextBox.Text = fieldListDropdown.SelectedValue.ToString() + " field does not exists";
+            }
         }
 
         private void getContentBtn_Click(object sender, EventArgs e)
