@@ -22,14 +22,13 @@ namespace GenAISitecoreIntegration
             languageDropdown.DataSource = Enum.GetValues(typeof(Language));
         }
 
-        private void translateBtn_Click(object sender, EventArgs e)
+        private async void translateBtn_Click(object sender, EventArgs e)
         {
             var path = itemIdTextbox.Text;
-            var field = fieldListDropdown.SelectedItem.ToString();
-            var language = languageDropdown.SelectedItem.ToString();
-            var query = queryTextbox.Text;
-            //qLOperations.Translate(path, query, field, language);
-            //resultTextBox.Text = Helper.Translate(path, fieldId, language);
+            var field = fieldListDropdown.SelectedValue.ToString();
+            var language = languageDropdown.SelectedValue.ToString();
+            var selectedFieldValue = itemFields.fields.FirstOrDefault(x => x.name.Equals(field))?.value;
+            await qLOperations.UpdateSitecoreItem(path, language, field, selectedFieldValue);
         }
 
         private async void getItemFieldsBtn_Click(object sender, EventArgs e)
@@ -39,16 +38,22 @@ namespace GenAISitecoreIntegration
             if(itemFields!=null && itemFields.fields?.Length>0)
             {
                 fieldListDropdown.DisplayMember = "name";
-                fieldListDropdown.ValueMember = "Id";
+                fieldListDropdown.ValueMember = "name";
                 fieldListDropdown.DataSource = itemFields.fields;
             }
-            resultTextBox.Text = "No Fields Found";
         }
 
         private void fieldListDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedField = itemFields.fields.ToList().FirstOrDefault(x => x.Id.Equals(fieldListDropdown.SelectedValue.ToString()));
-            resultTextBox.Text = string.Format("Item: {0}\nSelected Field Are Below:\nField Name: {1]\nField Value: {2}", itemFields.name, selectedField.name, selectedField.value);
+            var selectedField = itemFields.fields.ToList().FirstOrDefault(x => x.name.Equals(fieldListDropdown.SelectedValue.ToString()));
+            if (selectedField != null)
+            {
+                resultTextBox.Text = string.Format("Item: {0}\nSelected Field Are Below:\nField Name: {1}\nField Value: {2}", itemFields.name, selectedField.name, selectedField.value);
+            }
+            else
+            {
+                resultTextBox.Text = fieldListDropdown.SelectedValue.ToString() + " field does not exists";
+            }
         }
 
         private void textGenerationToolStripMenuItem_Click(object sender, EventArgs e)

@@ -1,6 +1,7 @@
-﻿using SitecoreOperations.Models;
-using SitecoreOperations.SitecoreGraphQLOperations;
+﻿using SitecoreOperations.SitecoreGraphQLOperations;
 using System;
+using System.IO;
+using System.IO.Compression;
 using System.Windows.Forms;
 
 namespace GenAISitecoreIntegration
@@ -8,7 +9,6 @@ namespace GenAISitecoreIntegration
     public partial class ImageAnalysisForm : Form
     {
         private GraphQLOperations qLOperations;
-        private Items itemFields;
 
         public ImageAnalysisForm()
         {
@@ -18,36 +18,6 @@ namespace GenAISitecoreIntegration
         private void ImageAnalysisForm_Load(object sender, EventArgs e)
         {
             qLOperations = new GraphQLOperations();
-            languageDropdown.DataSource = Enum.GetValues(typeof(Language));
-        }
-
-        private void translateBtn_Click(object sender, EventArgs e)
-        {
-            var path = itemIdTextbox.Text;
-            var field = fieldListDropdown.SelectedItem.ToString();
-            var language = languageDropdown.SelectedItem.ToString();
-            var query = queryTextbox.Text;
-            //qLOperations.Translate(path, query, field, language);
-            //resultTextBox.Text = Helper.Translate(path, fieldId, language);
-        }
-
-        private async void getItemFieldsBtn_Click(object sender, EventArgs e)
-        {
-            var path = itemIdTextbox.Text;
-            itemFields = await qLOperations.GetSitecoreItem(path);
-            if(itemFields!=null && itemFields.fields?.Length>0)
-            {
-                fieldListDropdown.DisplayMember = "name";
-                fieldListDropdown.ValueMember = "Id";
-                fieldListDropdown.DataSource = itemFields.fields;
-
-            }
-            resultTextBox.Text = "No Fields Found";
-        }
-
-        private void fieldListDropdown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void textGenerationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -83,9 +53,50 @@ namespace GenAISitecoreIntegration
             Application.Exit();
         }
 
-        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
-        {
+        private void uploadBtn_Click(object sender, EventArgs e)
+        {            
+            using (FileStream fs = new FileStream(filePathTextbox.Text, FileMode.Open))
+            {
+                using (ZipArchive archive = new ZipArchive(fs))
+                {
+                    foreach (ZipArchiveEntry entry in archive.Entries)
+                    {
+                        if(!string.IsNullOrEmpty(entry.Name))
+                        {
+                            using (var stream = entry.Open())
+                            using (var memoryStream = new MemoryStream())
+                            {
+                                stream.CopyTo(memoryStream);
+                                var bytes = memoryStream.ToArray();
+                                var base64 = Convert.ToBase64String(bytes);
+                                //qLOperations.Image(itemIdTextbox.Text,base64);
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
+        private void browseBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                Title = "Browse Files",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                DefaultExt = "zip",
+                Filter = "zip files (*.zip)|*.zip",
+                FilterIndex = 2,
+                ReadOnlyChecked = true,
+                ShowReadOnly = true
+            };
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                filePathTextbox.Text = openFileDialog1.FileName;
+            }
         }
     }
 }

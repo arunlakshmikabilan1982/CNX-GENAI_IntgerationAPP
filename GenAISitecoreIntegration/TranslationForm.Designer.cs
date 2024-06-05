@@ -31,8 +31,6 @@ namespace GenAISitecoreIntegration
         {
             this.itemIdLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.queryTextbox = new System.Windows.Forms.TextBox();
-            this.queryLabel = new System.Windows.Forms.Label();
             this.getItemFieldsBtn = new System.Windows.Forms.Button();
             this.itemIdTextbox = new System.Windows.Forms.TextBox();
             this.translateBtn = new System.Windows.Forms.Button();
@@ -68,8 +66,6 @@ namespace GenAISitecoreIntegration
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.queryTextbox);
-            this.panel1.Controls.Add(this.queryLabel);
             this.panel1.Controls.Add(this.getItemFieldsBtn);
             this.panel1.Controls.Add(this.itemIdTextbox);
             this.panel1.Controls.Add(this.translateBtn);
@@ -83,28 +79,11 @@ namespace GenAISitecoreIntegration
             this.panel1.Size = new System.Drawing.Size(967, 281);
             this.panel1.TabIndex = 1;
             // 
-            // queryTextbox
-            // 
-            this.queryTextbox.Location = new System.Drawing.Point(429, 73);
-            this.queryTextbox.Name = "queryTextbox";
-            this.queryTextbox.Size = new System.Drawing.Size(259, 26);
-            this.queryTextbox.TabIndex = 3;
-            // 
-            // queryLabel
-            // 
-            this.queryLabel.AutoSize = true;
-            this.queryLabel.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.queryLabel.Location = new System.Drawing.Point(425, 35);
-            this.queryLabel.Name = "queryLabel";
-            this.queryLabel.Size = new System.Drawing.Size(64, 23);
-            this.queryLabel.TabIndex = 9;
-            this.queryLabel.Text = "Query";
-            // 
             // getItemFieldsBtn
             // 
             this.getItemFieldsBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.getItemFieldsBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.getItemFieldsBtn.Location = new System.Drawing.Point(79, 121);
+            this.getItemFieldsBtn.Location = new System.Drawing.Point(460, 54);
             this.getItemFieldsBtn.Name = "getItemFieldsBtn";
             this.getItemFieldsBtn.Size = new System.Drawing.Size(188, 45);
             this.getItemFieldsBtn.TabIndex = 7;
@@ -209,7 +188,6 @@ namespace GenAISitecoreIntegration
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeToolStripMenuItem,
@@ -305,8 +283,6 @@ namespace GenAISitecoreIntegration
         private System.Windows.Forms.Label headerLabel;
         private System.Windows.Forms.TextBox itemIdTextbox;
         private System.Windows.Forms.Button getItemFieldsBtn;
-        private System.Windows.Forms.Label queryLabel;
-        private System.Windows.Forms.TextBox queryTextbox;
         private System.Windows.Forms.ComboBox fieldListDropdown;
         private System.Windows.Forms.Label fieldListLabel;
         private System.Windows.Forms.MenuStrip menuStrip1;
