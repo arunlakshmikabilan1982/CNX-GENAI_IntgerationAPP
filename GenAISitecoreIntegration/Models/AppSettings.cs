@@ -9,5 +9,6 @@
         public string ScApikey { get; set; }
         public string ArticleblogGenAI { get; set; }
         public string AskGenAIBot { get; set; }
+        public string TranslateGenAI { get; set; }
     }
 }
