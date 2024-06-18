@@ -22,6 +22,8 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
         string aricleblogGenAI = ConfigurationManager.AppSettings["articleblogGenAI"];
         string askGenAI = ConfigurationManager.AppSettings["askGenAIBot"];
         string TranslateGenAI = ConfigurationManager.AppSettings["aiTranslator"];
+        string ImageToText = ConfigurationManager.AppSettings["aiImageToText"];
+
         public async Task GetItemFields()
         {
             var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
@@ -295,7 +297,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             }
         }
 
-            public async Task<GraphQLResponse<Object>> UpdateSitecoreItem(string itemPath, string language, string fieldName, string fieldValue)
+        public async Task<GraphQLResponse<Object>> UpdateSitecoreItem(string itemPath, string language, string fieldName, string fieldValue)
         {
             try
             {
@@ -387,8 +389,81 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             }
         }
 
+        //public async Task<GraphQLResponse<Object>> GetImageDescriptionAndUpdate(string image)
+        //{
+        //    try
+        //    {
+        //        var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
+        //        {
+        //            EndPoint = new Uri(AuthoringGraphQLUrl)
+        //        }, new NewtonsoftJsonSerializer());
 
-        }
+        //        var genAIBotApiUrl = @"" + ImageToText;
+
+        //        var myObject = new ImageToTextRequestBody
+        //        {
+        //            image=image
+        //        };
+
+        //        var objAsJson = JsonConvert.SerializeObject(myObject);
+        //        var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+
+        //        HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, genAIBotApiUrl);
+        //        httpRequest.Content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+
+        //        string resultContentString = string.Empty;
+        //        using (var client = new HttpClient())
+        //        {
+        //            //client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+        //            var result = await client.SendAsync(httpRequest);
+        //            resultContentString = await result.Content.ReadAsStringAsync();
+        //        }
+
+        //        graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + AuthoringAccessToken);
+
+        //        string query = @"mutation($itemPath: String!,$language: String!, $fieldName:String!, $fieldValue:ID!)
+        //                          {
+        //                            updateItem(
+        //                                    input: {
+        //                                        path: $itemPath,
+        //                                        version: 1 ,
+        //                                        language: $language,
+        //                                       fields: [{ name: $fieldName, value: $fieldValue }
+        //                                        ]
+        //                                        }
+        //                                        ) {
+        //                                        item {
+        //                                            itemId
+        //                                        }
+        //                                        }
+        //                                        }";
+        //        var request = new GraphQLRequest
+        //        {
+        //            Query = query,
+        //            Variables = new
+        //            {
+        //                itemPath = itemPath,
+        //                fieldName = fieldName,
+        //                language = graphqlLanguage,
+        //                fieldValue = resultContentString,
+        //            }
+        //        };
+        //        var graphQLResponse = await graphQLClient.SendMutationAsync<object>(request);
+        //        if (graphQLResponse.Errors != null)
+        //        {
+        //            return null;
+        //        }
+        //        Console.WriteLine(graphQLResponse.Data);
+        //        return graphQLResponse;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw e;
+
+        //    }
+        //}
     }
+}
+}
 
 
