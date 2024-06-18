@@ -22,7 +22,6 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
         string aricleblogGenAI = ConfigurationManager.AppSettings["articleblogGenAI"];
         string askGenAI = ConfigurationManager.AppSettings["askGenAIBot"];
         string TranslateGenAI = ConfigurationManager.AppSettings["aiTranslator"];
-        string ImageToText = ConfigurationManager.AppSettings["aiImageToText"];
         public async Task GetItemFields()
         {
             var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
@@ -121,7 +120,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             var myObject = new ContentGenerator
             {
                 Query = Query,
-                ContentType = "article",
+                ContentType = "Article",
                 FormatType = Template
             };
 
@@ -132,25 +131,12 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, genAIBotApiUrl);
             httpRequest.Content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
 
-            string resultContentString = string.Empty;
+            var resultContentString = new Article();
             using (var client = new HttpClient())
             {
                 var result = await client.SendAsync(httpRequest);
-                resultContentString = await result.Content.ReadAsStringAsync();
-            }
-            var articleItemAI = new Article();
-            if (Template == "template1")
-            {
-                articleItemAI.ArticleTitle = Regex.Split(resultContentString, "ArticleBody--")[0];
-                articleItemAI.ArticleBody = Regex.Split(resultContentString, "ArticleBody--")[1];
-            }
-            else if (Template == "template2")
-            {
-                var articleLeadParagraphSplit = Regex.Split(resultContentString, "ArticleLeadParagraph--");
-                var articleExplanationSplit = Regex.Split(articleLeadParagraphSplit[1], "ArticleExplanation--");
-                articleItemAI.ArticleHeadline = articleLeadParagraphSplit[0];
-                articleItemAI.ArticleLeadParagraph = articleExplanationSplit[0];
-                articleItemAI.ArticleExplanation = articleExplanationSplit[1];
+                var resultstring = result.Content.ReadAsStringAsync().Result;
+                resultContentString = JsonConvert.DeserializeObject<Article>(resultstring);
             }
 
             #endregion Gen AI Call
@@ -182,11 +168,11 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             {
                 Query = query,
                 Variables = new { templateId = articleTemplate, itemName = ItemName, language = "en", parent = ParentItem, 
-                    articleTitle = articleItemAI.ArticleTitle ?? string.Empty,
-                    articleBody = articleItemAI.ArticleBody ?? string.Empty,
-                    articleHeadline = articleItemAI.ArticleHeadline ?? string.Empty,
-                    articleLeadParagraph = articleItemAI.ArticleLeadParagraph ?? string.Empty,
-                    articleExplanation = articleItemAI.ArticleExplanation ?? string.Empty
+                    articleTitle = resultContentString.ArticleTitle ?? string.Empty,
+                    articleBody = resultContentString.ArticleBody ?? string.Empty,
+                    articleHeadline = resultContentString.ArticleHeadline ?? string.Empty,
+                    articleLeadParagraph = resultContentString.ArticleLeadParagraph ?? string.Empty,
+                    articleExplanation = resultContentString.ArticleExplanation ?? string.Empty
                 }
             };
             var graphQLResponse = await graphQLClient.SendMutationAsync<object>(request);
@@ -203,16 +189,38 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             {
                 EndPoint = new Uri(AuthoringGraphQLUrl)
             }, new NewtonsoftJsonSerializer());
-
-            string itemName = "Blog1";
-            string articleTemplate = Constants.Templates.BlogTemplateId;
-            string parentItem = "{14FEBEFA-3EAF-474B-83E5-3C36E41E794D}";
-
-            //GenAI Call
-
             graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + AuthoringAccessToken);
 
-            string query = @"mutation($templateId:ID!, $language: String!, $itemName:String!, $parent:ID!)
+            string blogTemplate = Constants.Templates.BlogTemplateId;
+
+            #region Gen AI Call
+
+            var myObject = new ContentGenerator
+            {
+                Query = Query,
+                ContentType = "Blog",
+                FormatType = Template
+            };
+
+            var objAsJson = JsonConvert.SerializeObject(myObject);
+            var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+            var genAIBotApiUrl = @"" + aricleblogGenAI;
+
+            HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, genAIBotApiUrl);
+            httpRequest.Content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+
+            var resultContentString = new Blog();
+            using (var client = new HttpClient())
+            {
+                var result = await client.SendAsync(httpRequest);
+                var resultstring = result.Content.ReadAsStringAsync().Result;
+                resultContentString = JsonConvert.DeserializeObject<Blog>(resultstring);
+            }
+
+            #endregion Gen AI Call
+
+            string query = @"mutation($templateId:ID!, $language: String!, $itemName:String!, $parent:ID!,
+                              $blogTitle:String!, $blogBody:String!, $blogHilights:String!)
                                   {
                                     createItem(
                                             input: {
@@ -220,9 +228,9 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
                                                 templateId: $templateId ,
                                                 parent: $parent,
                                                 language: $language,
-                                               fields: [{ name: ""BlogTitle"", value: $itemName },
-                                                 { name: ""BlogBody"", value: $itemName },
-                                                { name: ""BlogHilights"", value: $itemName }
+                                               fields: [{ name: ""BlogTitle"", value: $blogTitle },
+                                                 { name: ""BlogBody"", value: $blogBody },
+                                                { name: ""BlogHilights"", value: $blogHilights }
                                                 ]
                                                 }
                                                 ) {
@@ -236,12 +244,16 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
                 Query = query,
                 Variables = new
                 {
-                    templateId = articleTemplate,
-                    itemName = itemName,
+                    templateId = blogTemplate,
+                    itemName = ItemName,
                     language = "en",
-                    parent = parentItem,
+                    parent = ParentItem,
+                    blogTitle = resultContentString.BlogTitle ?? string.Empty,
+                    blogBody = resultContentString.BlogBody ?? string.Empty,
+                    blogHilights = resultContentString.BlogHilights ?? string.Empty,
                 }
             };
+
             var graphQLResponse = await graphQLClient.SendMutationAsync<object>(request);
             Console.WriteLine(graphQLResponse.Data);
             return graphQLResponse;
@@ -253,6 +265,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             {
                 string graphqlendpoint = System.Configuration.ConfigurationManager.AppSettings.Get("previewGraphQLUrl");
                 string apikey = System.Configuration.ConfigurationManager.AppSettings.Get("scApikey");
+
 
                 // Call GraphQL endpoint here, specifying return data type, endpoint, method, query, and variables
                 var result = await Request.CallGraphQLAsync<DataItem>(
@@ -282,7 +295,7 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             }
         }
 
-        public async Task<GraphQLResponse<Object>> UpdateSitecoreItem(string itemPath, string language, string fieldName, string fieldValue)
+            public async Task<GraphQLResponse<Object>> UpdateSitecoreItem(string itemPath, string language, string fieldName, string fieldValue)
         {
             try
             {
@@ -291,6 +304,9 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
                 {
                     EndPoint = new Uri(AuthoringGraphQLUrl)
                 }, new NewtonsoftJsonSerializer());
+
+
+
 
                 var genAIBotApiUrl = @"" + TranslateGenAI;
 
@@ -371,80 +387,8 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             }
         }
 
-        //public async Task<GraphQLResponse<Object>> GetImageDescriptionAndUpdate(string image)
-        //{
-        //    try
-        //    {
-        //        var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
-        //        {
-        //            EndPoint = new Uri(AuthoringGraphQLUrl)
-        //        }, new NewtonsoftJsonSerializer());
 
-        //        var genAIBotApiUrl = @"" + ImageToText;
-
-        //        var myObject = new ImageToTextRequestBody
-        //        {
-        //            image=image
-        //        };
-
-        //        var objAsJson = JsonConvert.SerializeObject(myObject);
-        //        var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
-
-        //        HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, genAIBotApiUrl);
-        //        httpRequest.Content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
-
-        //        string resultContentString = string.Empty;
-        //        using (var client = new HttpClient())
-        //        {
-        //            //client.DefaultRequestHeaders.Add("Content-Type", "application/json");
-        //            var result = await client.SendAsync(httpRequest);
-        //            resultContentString = await result.Content.ReadAsStringAsync();
-        //        }
-
-        //        graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + AuthoringAccessToken);
-
-        //        string query = @"mutation($itemPath: String!,$language: String!, $fieldName:String!, $fieldValue:ID!)
-        //                          {
-        //                            updateItem(
-        //                                    input: {
-        //                                        path: $itemPath,
-        //                                        version: 1 ,
-        //                                        language: $language,
-        //                                       fields: [{ name: $fieldName, value: $fieldValue }
-        //                                        ]
-        //                                        }
-        //                                        ) {
-        //                                        item {
-        //                                            itemId
-        //                                        }
-        //                                        }
-        //                                        }";
-        //        var request = new GraphQLRequest
-        //        {
-        //            Query = query,
-        //            Variables = new
-        //            {
-        //                itemPath = itemPath,
-        //                fieldName = fieldName,
-        //                language = graphqlLanguage,
-        //                fieldValue = resultContentString,
-        //            }
-        //        };
-        //        var graphQLResponse = await graphQLClient.SendMutationAsync<object>(request);
-        //        if (graphQLResponse.Errors != null)
-        //        {
-        //            return null;
-        //        }
-        //        Console.WriteLine(graphQLResponse.Data);
-        //        return graphQLResponse;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw e;
-
-        //    }
-        //}
+        }
     }
-}
 
 
