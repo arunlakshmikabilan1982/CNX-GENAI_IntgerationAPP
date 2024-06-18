@@ -12,4 +12,8 @@ namespace SitecoreOperations.Models
         public string targetlanguage { get; set; }
         public string sourcelanguage { get; set; }
     }
+    public class ImageToTextRequestBody
+    {
+        public string image { get; set; }
+    }
 }

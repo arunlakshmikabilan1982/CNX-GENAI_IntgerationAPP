@@ -163,23 +163,23 @@
       <DependentUpon>HomeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AppSettings.cs" />
-    <Compile Include="TextGenerationForm.cs">
+    <Compile Include="ContentIdeationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TextGenerationForm.Designer.cs">
-      <DependentUpon>TextGenerationForm.cs</DependentUpon>
+    <Compile Include="ContentIdeationForm.Designer.cs">
+      <DependentUpon>ContentIdeationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Image Analysis.cs">
+    <Compile Include="ImageToTextGenerationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Image Analysis.Designer.cs">
-      <DependentUpon>Image Analysis.cs</DependentUpon>
+    <Compile Include="ImageToTextGenerationForm.Designer.cs">
+      <DependentUpon>ImageToTextGenerationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Content Analysis.cs">
+    <Compile Include="ContentUpdationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Content Analysis.Designer.cs">
-      <DependentUpon>Content Analysis.cs</DependentUpon>
+    <Compile Include="ContentUpdationForm.Designer.cs">
+      <DependentUpon>ContentUpdationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TranslationForm.cs">
       <SubType>Form</SubType>
@@ -192,14 +192,14 @@
     <EmbeddedResource Include="HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TextGenerationForm.resx">
-      <DependentUpon>TextGenerationForm.cs</DependentUpon>
+    <EmbeddedResource Include="ContentIdeationForm.resx">
+      <DependentUpon>ContentIdeationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Image Analysis.resx">
-      <DependentUpon>Image Analysis.cs</DependentUpon>
+    <EmbeddedResource Include="ImageToTextGenerationForm.resx">
+      <DependentUpon>ImageToTextGenerationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content Analysis.resx">
-      <DependentUpon>Content Analysis.cs</DependentUpon>
+    <EmbeddedResource Include="ContentUpdationForm.resx">
+      <DependentUpon>ContentUpdationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TranslationForm.resx">
       <DependentUpon>TranslationForm.cs</DependentUpon>

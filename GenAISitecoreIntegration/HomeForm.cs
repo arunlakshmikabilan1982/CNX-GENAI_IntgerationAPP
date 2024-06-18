@@ -13,7 +13,7 @@ namespace GenAISitecoreIntegration
         private void textGenerationBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            TextGenerationForm f1 = new TextGenerationForm();
+            ContentIdeationForm f1 = new ContentIdeationForm();
             f1.ShowDialog();
         }
 
@@ -27,14 +27,14 @@ namespace GenAISitecoreIntegration
         private void contentBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ContentAnalysisForm f1 = new ContentAnalysisForm();
+            ContentUpdationForm f1 = new ContentUpdationForm();
             f1.ShowDialog();
         }
 
         private void imageBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ImageAnalysisForm f1 = new ImageAnalysisForm();
+            ImageToTextGenerationForm f1 = new ImageToTextGenerationForm();
             f1.ShowDialog();
         }
 

@@ -7,18 +7,18 @@ using System.Windows.Forms;
 
 namespace GenAISitecoreIntegration
 {
-    public partial class ContentAnalysisForm : Form
+    public partial class ContentUpdationForm : Form
     {
         private GraphQLOperations qLOperations;
         private Items itemFields;
         private AppSettings appSettings;
 
-        public ContentAnalysisForm()
+        public ContentUpdationForm()
         {
             InitializeComponent();
         }
 
-        private void ContentAnalysisForm_Load(object sender, EventArgs e)
+        private void ContentUpdationForm_Load(object sender, EventArgs e)
         {
             qLOperations = new GraphQLOperations();
             languageDropdown.DataSource = Enum.GetValues(typeof(Language));
@@ -63,7 +63,7 @@ namespace GenAISitecoreIntegration
         private void textGenerationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
-            TextGenerationForm f1 = new TextGenerationForm();
+            ContentIdeationForm f1 = new ContentIdeationForm();
             f1.ShowDialog();
         }
 
@@ -77,14 +77,14 @@ namespace GenAISitecoreIntegration
         private void contentAnalysisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ContentAnalysisForm f1 = new ContentAnalysisForm();
+            ContentUpdationForm f1 = new ContentUpdationForm();
             f1.ShowDialog();
         }
 
         private void imageAnalysisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ImageAnalysisForm f1 = new ImageAnalysisForm();
+            ImageToTextGenerationForm f1 = new ImageToTextGenerationForm();
             f1.ShowDialog();
         }
 
