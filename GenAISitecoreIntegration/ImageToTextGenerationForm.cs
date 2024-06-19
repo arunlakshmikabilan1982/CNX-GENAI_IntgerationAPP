@@ -69,7 +69,7 @@ namespace GenAISitecoreIntegration
                                 stream.CopyTo(memoryStream);
                                 var bytes = memoryStream.ToArray();
                                 var base64 = Convert.ToBase64String(bytes);
-                                //await qLOperations.GetImageDescriptionAndUpdate(base64);
+                                await qLOperations.GetImageDescriptionAndUpdate(base64);
                             }
                         }
                     }

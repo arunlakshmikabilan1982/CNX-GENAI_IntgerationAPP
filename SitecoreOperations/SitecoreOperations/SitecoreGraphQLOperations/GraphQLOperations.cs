@@ -307,9 +307,6 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
                     EndPoint = new Uri(AuthoringGraphQLUrl)
                 }, new NewtonsoftJsonSerializer());
 
-
-
-
                 var genAIBotApiUrl = @"" + TranslateGenAI;
 
                 var myObject = new TransalteGenAIRequestBody
@@ -338,7 +335,6 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
                     case "Arabic":
                         graphqlLanguage = "ar-AE";
                         break;
-
 
                     case "Chinese":
                         graphqlLanguage = "zh-CN";
@@ -389,81 +385,89 @@ namespace SitecoreOperations.SitecoreGraphQLOperations
             }
         }
 
-        //public async Task<GraphQLResponse<Object>> GetImageDescriptionAndUpdate(string image)
-        //{
-        //    try
-        //    {
-        //        var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
-        //        {
-        //            EndPoint = new Uri(AuthoringGraphQLUrl)
-        //        }, new NewtonsoftJsonSerializer());
+        public async Task<GraphQLResponse<Object>> GetImageDescriptionAndUpdate(string image)
+        {
+            try
+            {
+                var graphQLClient = new GraphQLHttpClient(new GraphQLHttpClientOptions
+                {
+                    EndPoint = new Uri(AuthoringGraphQLUrl)
+                }, new NewtonsoftJsonSerializer());
 
-        //        var genAIBotApiUrl = @"" + ImageToText;
+                var genAIBotApiUrl = @"" + ImageToText;
 
-        //        var myObject = new ImageToTextRequestBody
-        //        {
-        //            image=image
-        //        };
+                var myObject = new ImageToTextRequestBody
+                {
+                    image = image
+                };
 
-        //        var objAsJson = JsonConvert.SerializeObject(myObject);
-        //        var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+                var objAsJson = JsonConvert.SerializeObject(myObject);
+                var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
 
-        //        HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, genAIBotApiUrl);
-        //        httpRequest.Content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+                HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, genAIBotApiUrl);
+                httpRequest.Content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
 
-        //        string resultContentString = string.Empty;
-        //        using (var client = new HttpClient())
-        //        {
-        //            //client.DefaultRequestHeaders.Add("Content-Type", "application/json");
-        //            var result = await client.SendAsync(httpRequest);
-        //            resultContentString = await result.Content.ReadAsStringAsync();
-        //        }
+                var resultContentString = new ImageToTextResponse();
+                using (var client = new HttpClient())
+                {
+                    //client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+                    var result = await client.SendAsync(httpRequest);
+                    var resultstring = result.Content.ReadAsStringAsync().Result;
+                    resultContentString = JsonConvert.DeserializeObject<ImageToTextResponse>(resultstring);
+                }
 
-        //        graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + AuthoringAccessToken);
+                graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + AuthoringAccessToken);
 
-        //        string query = @"mutation($itemPath: String!,$language: String!, $fieldName:String!, $fieldValue:ID!)
-        //                          {
-        //                            updateItem(
-        //                                    input: {
-        //                                        path: $itemPath,
-        //                                        version: 1 ,
-        //                                        language: $language,
-        //                                       fields: [{ name: $fieldName, value: $fieldValue }
-        //                                        ]
-        //                                        }
-        //                                        ) {
-        //                                        item {
-        //                                            itemId
-        //                                        }
-        //                                        }
-        //                                        }";
-        //        var request = new GraphQLRequest
-        //        {
-        //            Query = query,
-        //            Variables = new
-        //            {
-        //                itemPath = itemPath,
-        //                fieldName = fieldName,
-        //                language = graphqlLanguage,
-        //                fieldValue = resultContentString,
-        //            }
-        //        };
-        //        var graphQLResponse = await graphQLClient.SendMutationAsync<object>(request);
-        //        if (graphQLResponse.Errors != null)
-        //        {
-        //            return null;
-        //        }
-        //        Console.WriteLine(graphQLResponse.Data);
-        //        return graphQLResponse;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw e;
-
-        //    }
-        //}
+                string query = @"mutation($templateId:ID!, $language: String!, $itemName:String!, $parent:ID!,
+                              $title:String!, $keywords:String!, $description:String!, $media:String!)
+                                  {
+                                    createItem(
+                                            input: {
+                                                name: $itemName,
+                                                templateId: $templateId ,
+                                                parent: $parent,
+                                                language: $language,
+                                                fields: [
+                                                    { name: ""Title"", value: $title },
+                                                    { name: ""Keywords"", value: $keywords },
+                                                    { name: ""Description"", value: $description },
+                                                    { name: ""Media"", value: $media },
+                                                    { name: ""Alt"", value: $title }
+                                                ]
+                                                }
+                                                ) {
+                                                item {
+                                                    itemId
+                                                }
+                                                }
+                                                }";
+                var request = new GraphQLRequest
+                {
+                    Query = query,
+                    Variables = new
+                    {
+                        templateId = "{F1828A2C-7E5D-4BBD-98CA-320474871548}",
+                        itemName = resultContentString.Title,
+                        language = "en",
+                        parent = "{72AC6B15-5E68-41AF-B6B1-39E6D44840DA}",
+                        title = resultContentString.Title ?? string.Empty,
+                        keywords = resultContentString.Keywords ?? string.Empty,
+                        description = resultContentString.Description ?? string.Empty,
+                        media = image
+                    }
+                };
+                var graphQLResponse = await graphQLClient.SendMutationAsync<object>(request);
+                if (graphQLResponse.Errors != null)
+                {
+                    return null;
+                }
+                Console.WriteLine(graphQLResponse.Data);
+                return graphQLResponse;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
-}
-
-

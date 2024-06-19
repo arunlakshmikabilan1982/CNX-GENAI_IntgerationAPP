@@ -89,6 +89,7 @@
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ContentGenerator.cs" />
     <Compile Include="Models\Dataitem.cs" />
+    <Compile Include="Models\ImageToTextResponse.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\GenAIBot.cs" />
     <Compile Include="Models\SitecoreItemFields.cs" />
